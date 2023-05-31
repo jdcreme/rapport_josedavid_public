@@ -3,7 +3,8 @@
                 BCOR=5mm,paper=a4,fontsize=11pt,%
                 ngerman,american,%lockflag%
 ]{scrreprt}
-
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead{TODO 1}
@@ -36,6 +37,15 @@ Definition of the effective hamiltonian
 Introduce SLEPc and PETSc.
 
 \section{Results}
+
+\subsection{Hole repulsion}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{"12_4h_J_wmax_vs_xrep.pdf"}
+    \caption{\label{fig:}Variation of the value of $J$ for which we have a maximum in the weight vs the value of hole repulsion $V$. }
+\end{figure}
+
 \section{Discussion}
 \end{document}
 
