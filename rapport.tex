@@ -4,8 +4,13 @@
                 ngerman,american,%lockflag%
 ]{scrreprt}
 \usepackage{graphicx}
-\graphicspath{ {./Figures/} }
+\usepackage{amsmath}
 \usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage{modiagram}
+
+\graphicspath{ {./Figures/} }
+
 \pagestyle{fancy}
 \lhead{jose-david creme}
 \rhead{TODO 1}
@@ -26,16 +31,68 @@ Introduce the following topics
   \item Anomalous behavior of magnetic susceptibility in linear chain of Nickelates
 \end{itemize}
 
-\chapter{Methodology}
+\chapter{Double Exchange Hamiltonian}
 
-\section{Double Exchange Hamiltonian}
+The double exchange model is used to describe mixed valent transition
+metal based molecules. The phenomenology of ferromagnetic and anti-ferromagnetic
+behavior in such molecules is captured by the various parameters of the
+double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
 
-Introduce projectors
+\begin{equation}
+  \begin{split}
+\hat{H} &= \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} \\
+        &+ \sum_{\braket{ij}} 2J_a \hat{S}_{a_i}\cdot\hat{S}_{a_j} \\
+        &+ \sum_{\braket{ij}} t\left( \hat{c}^{\dagger}_{a_i}\cdot\hat{c}_{a_j} + \text{h.c.}\right ) \\
+        &+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) \\
+        &+ \sum_{i,i+2} V_{NNN}\left ( \delta_{n_i,0}\ \delta_{n_{i+2},0} \right )
+  \end{split}
+\label{eq:demodel}
+\end{equation}
+
+The above Hamiltonian describes a model with two valence orbitals on each
+atom (site) ideally of differnet symmetry (i.e. orthogonal, e.g. $a,b$). A schematic is shown in
+Figure:~\ref{fig:deham}.
+
+\begin{figure}[ht]
+  \centering
+\begin{modiagram}[names]
+ \atom[$1$]{left}{
+    1s = { 0; up} ,
+    2s = { 1; up} ,
+ }
+
+ \atom[$2$]{right}{
+    1s = { 0; up} ,
+    2s = { 1;   } ,
+ }
+ \node[right,xshift=4mm] at (1sright) {$b$};
+ \node[right,xshift=4mm] at (2sright) {$a$};
+ \node[left,xshift=-4mm] at (1sleft) {$b$};
+ \node[left,xshift=-4mm] at (2sleft) {$a$};
+ \end{modiagram}
+  \caption{\label{fig:deham} Schematic of the double exchange model with two valence orbitals on each atom.}
+\end{figure}
+
+The parameters in the model Hamiltonian are defined as follows:
+\begin{itemize}
+
+\item $K$ - The local exchange integral. This exchange integral represents
+  Hund's rule and is always positive. The local exchange favors parallel
+  coupling i.e. a local high spin determinant.
+
+\item $J$ - The kinetic exchange interaction between type $a$
+
+\end{itemize}
 
 \section{Parameter Space}
 
 Definition of the effective hamiltonian
 Test changes
+
+
+\chapter{Methodology}
+
+\section{Exact diagonalization}
 
 \section{Projector}
 
