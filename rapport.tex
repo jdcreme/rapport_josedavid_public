@@ -4,8 +4,20 @@
                 ngerman,american,%lockflag%
 ]{scrreprt}
 \usepackage{graphicx}
-\graphicspath{ {./Figures/} }
+\usepackage{amsmath}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{biblio.bib}
 \usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage{modiagram}
+\usepackage{tabularx}
+
+\graphicspath{ {./Figures/} }
+
 \pagestyle{fancy}
 \lhead{jose-david creme}
 \rhead{TODO 1}
@@ -14,6 +26,10 @@
 %\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 %\let\endchangemargin=\endlist
 \title{Modeling properties of the double exchange model hamiltonian}
+
+\newcommand{\citepetsc}{\cite{petsc_web_page,petsc_user_ref,petsc_efficient}}
+\newcommand{\citeslepc}{\cite{Hernandez_2003_SSL,slepc_users_manual}}
+
 
 \begin{document}
 \maketitle
@@ -26,20 +42,172 @@ Introduce the following topics
   \item Anomalous behavior of magnetic susceptibility in linear chain of Nickelates
 \end{itemize}
 
-\chapter{Methodology}
+\section{Experimental studies}
 
-\section{Double Exchange Hamiltonian}
+One dimensional transition metal chains have been synthesized and studied in
+literature.~\cite{darriet_compound_1993,batlogg_haldane_1994} Experimental
+studies on 1D Nickelates have shown that they exhibit a magnetic field
+dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we focus
+on the low temperature behavior of the 1D doped Nickelates close to the curie
+temperature. Experimental studies of susceptibility of 1D doped Nickelates have
+shown that near the Curie temperature, the materials show antiferromagnetic
+behavior.\cite{Ramirez} This behavior is contrary to the usual double exchange
+model where the holes are mobile throughout the chain. We develop arguments and
+discuss some new ideas to explain this behavior of the magnetic susceptibility
+in 1D doped Nickelates.
 
-Introduce projectors
+\section{Theoretical studies}
+
+One dimensional transition metal chains are immencely useful models
+for theoretical analysis due to the existance of powerful techniques
+such as the density matrix renormalization group (DMRG) and lanczos
+exact diagonalization techniques. Such methods can be applied to
+high accuracy and have been used to study models similar to the
+one studied here but with important differences.\cite{dagotto_correlated_1994,patel_emergence_2020}
+Further work by Dagotto. et. al have shown details of the existance
+of a ferromagnetic polaron and its extent in such 1D models.\cite{malvezzi_origin_2001} However, the parameter range
+that we have chosen for the current study relies on those extracted
+by \textit{ab initio} calculstions on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
+Therefore, the present study serves to augment the available literature
+for parameter range extracted using \textit{ab initio} calculations.
+
+\chapter{Double Exchange Hamiltonian}
+
+The double exchange model is used to describe mixed lvalent transition
+metal based molecules. The phenomenology of ferromagnetic and anti-ferromagnetic
+behavior in such molecules is captured by the various parameters of the
+double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
+
+\begin{equation}
+  \begin{split}
+\hat{H} &= \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} \\
+        &+ \sum_{\braket{ij}} 2J_a \hat{S}_{a_i}\cdot\hat{S}_{a_j} \\
+        &+ \sum_{\braket{ij}} t\left( \hat{c}^{\dagger}_{a_i}\cdot\hat{c}_{a_j} + \text{h.c.}\right ) \\
+        &+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) \\
+        &+ \sum_{i,i+2} V_{NNN}\left ( \delta_{n_i,0}\ \delta_{n_{i+2},0} \right )
+  \end{split}
+\label{eq:demodel}
+\end{equation}
+
+The above Hamiltonian describes a model with two valence orbitals on each
+atom (site) ideally of differnet symmetry (i.e. orthogonal, e.g. $a,b$). A schematic is shown in
+Figure:~\ref{fig:deham}.
+
+\begin{figure}[ht]
+  \centering
+\begin{modiagram}[names]
+ \atom[$1$]{left}{
+    1s = { 0; up} ,
+    2s = { 1; up} ,
+ }
+
+ \atom[$2$]{right}{
+    1s = { 0; up} ,
+    2s = { 1;   } ,
+ }
+ \node[right,xshift=4mm] at (1sright) {$b$};
+ \node[right,xshift=4mm] at (2sright) {$a$};
+ \node[left,xshift=-4mm] at (1sleft) {$b$};
+ \node[left,xshift=-4mm] at (2sleft) {$a$};
+
+ \draw[<-,gray,semithick]   (2sright) edge[bend right] node [left] {} (2sleft);
+ \draw[<->,gray,semithick] (1sright) edge[bend left] node [left] {} (1sleft);
+ \draw[<->,gray,semithick] (1sleft) edge[bend left] node [left] {} (2sleft);
+
+ \node[left,xshift=2.3cm, yshift=-9mm] at (1sleft) {$J$};
+ \node[left,xshift= 4mm, yshift=5mm] at (1sleft) {$K$};
+ \node[left,xshift=2.3cm, yshift=-0mm] at (2sleft) {$t$};
+
+ \end{modiagram}
+  \caption{\label{fig:deham} Orbital diagram representing the mail interactions of the double exchange model with two valence orbitals on each atom.}
+\end{figure}
+
+In Eq:~\ref{eq:demodel}, the spins of the electrons are represented by $S_a$,
+where the subscript $a$ denotes the orbital on which the electron resides.  The
+creation and annahilation operators of electrons are represented by
+$\hat{c}^{\dagger}$ and $\hat{C}$ respectively. The parameters in the model
+Hamiltonian are defined as follows:
+
+\begin{itemize}
+
+\item $K$ - The local exchange integral. This exchange integral represents
+  Hund's rule and is always positive. The local exchange favors parallel
+  coupling i.e. a local high spin determinant.
+
+\item $J$ - The kinetic exchange interaction between orbitals of symmetry $a$
+  on neighboring sites. This integral is responsible of the anti-parallel coupling.
+
+\item $t$ - The kinetic energy integral or the hopping term. The
+  transfer of electrons from one atom to the neighboring atom is represented
+  by the hopping term. This also favors parallel coupling when taken along with
+  the exchange integral $K$.
+
+\item $V$ - The hole repulsion term. This takes into account the repulsion between
+  holes which are on neighboring sites $V_{NN}$ or next-nearest neighboring sites $V_{NNN}$. The hole repulsion indirectly takes into account the repulsion between
+  electrons occupying nearby sites.\cite{calzado_proposal_2001}
+
+\end{itemize}
 
 \section{Parameter Space}
 
-Definition of the effective hamiltonian
-Test changes
+All the parameters of the model are important for understanding the collective
+properties of the double exchange hamiltonian. Here we give the order of magnitude
+of all the parameters used keeping in mind that we target molecules based on
+transition metal atoms.
+Previous studies using \textit{ab initio} methods in order to extract model
+parameters for various transition metal atoms such as Cu, Mn, and Ni have
+provided realistic order of magnitudes of the values of the parameters.
+In the present analysis, we use the full range of values in order to represent
+the full range of transition metal atoms.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c||}
+ \hline
+ Parameters  \\ [0.5ex]
+ \hline\hline
+ \\
+    $ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
+    $ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
+    $ 0.4 \le K \le 0.8 $                                    \\ [1ex]
+    $ V_{NN} = \frac{\alpha}{2r}\ ;\ 0.5 \le \alpha \le 0.8 $ \\ [1ex]
+    $ V_{NNN} = \alpha V_{NN} $                                \\ [1ex]
+ \hline
+\end{tabular}
+\label{tab:params}
+\caption{Table with range of parameter values.}
+\end{table}
+
+Including the hole repulsion term significantly changes the low energy physics
+of the model as shown by previous work\cite{calzado_proposal_2001}. Here we will
+study the influence in the variation of all the above parameters.
+
+
+\chapter{Methodology}
+
+The double exchange hamiltonian is studied for one dimensional chain
+of sites containing holes with a doping ratio of 1:3 i.e. one hole for every
+three sites. This follows our previous study which shows that for
+the physically meaningful range of parameter values (Table:~\ref{tab:params}),
+a single hole aligns about three sites.\cite{crystals_chilkuri}
+
+\section{Exact diagonalization}
+
+An exact diagonalization method is used to obtain many low energy states of the
+hamiltonian. Due to the exponential growth of the hilbert space with the number
+of sites, exact diagonalization becomes challenging.Here we use our home made
+code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to perform exact diagonalization and
+use a large number of high performance compute nodes for distributed storage of
+the hamiltonian matrix and eigenvectors. We have used DEHam\cite{deham} to
+perform exact diagonalization of very large number of sites up to 18 sites
+containing 36 orbitals with 6 holes which corresponds to a hilbert space of
+about $0.5 \times 10^9$ determinants.
+
+\section{Model space}
+
+\section{Model Hamiltonian}
 
 \section{Projector}
-
-Introduce SLEPc and PETSc.
 
 \section{Effective Hamiltonian}
 
@@ -85,4 +253,4 @@ Introduce SLEPc and PETSc.
 %*************************************************************************
 % Bibliographies
 %*************************************************************************
-\addbibresource{biblio.bib}
+\printbibliography
