@@ -27,6 +27,10 @@ sorting=ynt
 %\let\endchangemargin=\endlist
 \title{Modeling properties of the double exchange model hamiltonian}
 
+\newcommand{\citepetsc}{\cite{petsc_web_page,petsc_user_ref,petsc_efficient}}
+\newcommand{\citeslepc}{\cite{Hernandez_2003_SSL,slepc_users_manual}}
+
+
 \begin{document}
 \maketitle
 \thispagestyle{fancy}
@@ -38,9 +42,38 @@ Introduce the following topics
   \item Anomalous behavior of magnetic susceptibility in linear chain of Nickelates
 \end{itemize}
 
+\section{Experimental studies}
+
+One dimensional transition metal chains have been synthesized and studied in
+literature.~\cite{darriet_compound_1993,batlogg_haldane_1994} Experimental
+studies on 1D Nickelates have shown that they exhibit a magnetic field
+dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we focus
+on the low temperature behavior of the 1D doped Nickelates close to the curie
+temperature. Experimental studies of susceptibility of 1D doped Nickelates have
+shown that near the Curie temperature, the materials show antiferromagnetic
+behavior.\cite{Ramirez} This behavior is contrary to the usual double exchange
+model where the holes are mobile throughout the chain. We develop arguments and
+discuss some new ideas to explain this behavior of the magnetic susceptibility
+in 1D doped Nickelates.
+
+\section{Theoretical studies}
+
+One dimensional transition metal chains are immencely useful models
+for theoretical analysis due to the existance of powerful techniques
+such as the density matrix renormalization group (DMRG) and lanczos
+exact diagonalization techniques. Such methods can be applied to
+high accuracy and have been used to study models similar to the
+one studied here but with important differences.\cite{dagotto_correlated_1994,patel_emergence_2020}
+Further work by Dagotto. et. al have shown details of the existance
+of a ferromagnetic polaron and its extent in such 1D models.\cite{malvezzi_origin_2001} However, the parameter range
+that we have chosen for the current study relies on those extracted
+by \textit{ab initio} calculstions on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
+Therefore, the present study serves to augment the available literature
+for parameter range extracted using \textit{ab initio} calculations.
+
 \chapter{Double Exchange Hamiltonian}
 
-The double exchange model is used to describe mixed valent transition
+The double exchange model is used to describe mixed lvalent transition
 metal based molecules. The phenomenology of ferromagnetic and anti-ferromagnetic
 behavior in such molecules is captured by the various parameters of the
 double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
@@ -145,18 +178,36 @@ the full range of transition metal atoms.
 \caption{Table with range of parameter values.}
 \end{table}
 
-Including the hole repulsion term
-significantly changes the low energy physics of the model as shown by previous
-work\cite{calzado_proposal_2001}. Here we will study the
+Including the hole repulsion term significantly changes the low energy physics
+of the model as shown by previous work\cite{calzado_proposal_2001}. Here we will
+study the influence in the variation of all the above parameters.
 
 
 \chapter{Methodology}
 
+The double exchange hamiltonian is studied for one dimensional chain
+of sites containing holes with a doping ratio of 1:3 i.e. one hole for every
+three sites. This follows our previous study which shows that for
+the physically meaningful range of parameter values (Table:~\ref{tab:params}),
+a single hole aligns about three sites.\cite{crystals_chilkuri}
+
 \section{Exact diagonalization}
 
-\section{Projector}
+An exact diagonalization method is used to obtain many low energy states of the
+hamiltonian. Due to the exponential growth of the hilbert space with the number
+of sites, exact diagonalization becomes challenging.Here we use our home made
+code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to perform exact diagonalization and
+use a large number of high performance compute nodes for distributed storage of
+the hamiltonian matrix and eigenvectors. We have used DEHam\cite{deham} to
+perform exact diagonalization of very large number of sites up to 18 sites
+containing 36 orbitals with 6 holes which corresponds to a hilbert space of
+about $0.5 \times 10^9$ determinants.
 
-Introduce SLEPc and PETSc.
+\section{Model space}
+
+\section{Model Hamiltonian}
+
+\section{Projector}
 
 \section{Effective Hamiltonian}
 
