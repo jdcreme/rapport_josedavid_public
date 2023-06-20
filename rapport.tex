@@ -1,32 +1,81 @@
-\documentclass[ openright,titlepage,numbers=noenddot,headinclude,twoside,%
-                footinclude=true,cleardoublepage=empty,abstractoff,%
-                BCOR=5mm,paper=a4,fontsize=11pt,%
-                ngerman,american,%lockflag%
-]{scrreprt}
+\documentclass[12pt,twoside]{report}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage[
-backend=biber,
-style=alphabetic,
-sorting=ynt
-]{biblatex}
-\addbibresource{biblio.bib}
-\usepackage{fancyhdr}
-\usepackage{braket}
-\usepackage{modiagram}
-\usepackage{tabularx}
-\usepackage{amsmath}
-\usepackage{chemfig}
-\usepackage{modiagram}
-\usepackage{mhchem}
-\usepackage{geometry}
-\graphicspath{ {./Figures/} }
+\usepackage{amsfonts}
+\usepackage[spanish]{babel}  %Cosas en español
 
+% ---------------- Puntos decimales en lugar de comas para los numeros ---------------------------------
+\decimalpoint
+
+%--------------------------------------------- Estilo de las paginas -----------------------------------
+\usepackage[letterpaper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{jose-david creme}
-\rhead{TODO 1}
-\lfoot{TODO 1}
-\rfoot{TODO 1}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{float}
+\definecolor{MSUgreen}{RGB}{0,150,150}
+\fancyhead{}
+\fancyhead[RE,LO]{\rightmark}
+%\fancyhead[LE,RO]{\thepage}
+
+\fancyfoot{}
+\fancyfoot[CE,CO]{\thepage}
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+%\usepackage{biblatex}
+%\addbibresource{chapters/bibliografía.bib}
+
+%--------------------------Para las citas (al menos m comprime cuando son muchas y no las pone entre comas)
+\usepackage{cite}
+\usepackage{varioref}
+\usepackage[breaklinks,colorlinks=true, pdfstartview=FitV, linkcolor=blue, citecolor=red, urlcolor=blue]{hyperref}
+%\usepackage{kantlipsum}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{appendix}
+%\usepackage{cite}           % para contraer referencias
+\usepackage{longtable}      % Utilizado para la lista de simbolos
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{pstricks}
+%----------------------------------- Para hacer indice en panel lateral ----------------------------------
+\usepackage{hyperref}
+%\hypersetup{pdftex,colorlinks=true,allcolors=blue}
+\usepackage{hypcap}
+
+%-------------------------- Paquete para modificar los titulos de los cap y secciones---------------------
+\usepackage{titlesec}		
+
+%------------------------------- Lineas alrededor de los capitulos numerados -----------------------------
+\titleformat{\chapter}[display]
+{\Large\bfseries}
+{\titlerule[4pt] \chaptertitlename\ \thechapter}{5pt}
+{\large}[{\titlerule[2pt]}]
+
+
+%------------------------------- Lineas alrededor de los capitulos no numerados -----------------------------
+\titleformat{name=\chapter,numberless}[display]
+{\Large\bfseries}
+{\titlerule[4pt]}{-20pt}
+{\large}[{\titlerule[2pt]}]
+
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+
+%\usepackage[nottoc,numbib]{tocbibind}
+
+
+\graphicspath{ {./Figures/} }
+\lhead{Modeling properties of the double exchange model hamiltonian}
+\rhead{M2 Internship}
+%\lfoot{TODO 1}
+%\rfoot{TODO 1}
 %\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 %\let\endchangemargin=\endlist
 \title{Modeling properties of the double exchange model hamiltonian}
@@ -35,260 +84,314 @@ sorting=ynt
 \newcommand{\citeslepc}{\cite{Hernandez_2003_SSL,slepc_users_manual}}
 
 
+
+
+
 \begin{document}
-\maketitle
-\thispagestyle{fancy}
-\chapter{Introduction}
-
-Introduce the following topics
-\begin{itemize}
-  \item Colossal magnetic resistance
-  \item Anomalous behavior of magnetic susceptibility in linear chain of Nickelates
-\end{itemize}
-
-\section{Experimental studies}
-
-One dimensional transition metal chains have been synthesized and studied in
-literature.~\cite{darriet_compound_1993,batlogg_haldane_1994} Experimental
-studies on 1D Nickelates have shown that they exhibit a magnetic field
-dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we focus
-on the low temperature behavior of the 1D doped Nickelates close to the curie
-temperature. Experimental studies of susceptibility of 1D doped Nickelates have
-shown that near the Curie temperature, the materials show antiferromagnetic
-behavior.\cite{Ramirez} This behavior is contrary to the usual double exchange
-model where the holes are mobile throughout the chain. We develop arguments and
-discuss some new ideas to explain this behavior of the magnetic susceptibility
-in 1D doped Nickelates.
-
-\section{Theoretical studies}
-
-One dimensional transition metal chains are immencely useful models
-for theoretical analysis due to the existance of powerful techniques
-such as the density matrix renormalization group (DMRG) and lanczos
-exact diagonalization techniques. Such methods can be applied to
-high accuracy and have been used to study models similar to the
-one studied here but with important differences.\cite{dagotto_correlated_1994,patel_emergence_2020}
-Further work by Dagotto. et. al have shown details of the existance
-of a ferromagnetic polaron and its extent in such 1D models.\cite{malvezzi_origin_2001} However, the parameter range
-that we have chosen for the current study relies on those extracted
-by \textit{ab initio} calculstions on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
-Therefore, the present study serves to augment the available literature
-for parameter range extracted using \textit{ab initio} calculations.
-
-\chapter{Double Exchange Hamiltonian}
-
-The double exchange model is used to describe mixed lvalent transition
-metal based molecules. The phenomenology of ferromagnetic and anti-ferromagnetic
-behavior in such molecules is captured by the various parameters of the
-double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
-
-\begin{equation}
-  \begin{split}
-\hat{H} &= \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} \\
-        &+ \sum_{\braket{ij}} 2J_a \hat{S}_{a_i}\cdot\hat{S}_{a_j} \\
-        &+ \sum_{\braket{ij}} t\left( \hat{c}^{\dagger}_{a_i}\cdot\hat{c}_{a_j} + \text{h.c.}\right ) \\
-        &+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) \\
-        &+ \sum_{i,i+2} V_{NNN}\left ( \delta_{n_i,0}\ \delta_{n_{i+2},0} \right )
-  \end{split}
-\label{eq:demodel}
-\end{equation}
-
-The above Hamiltonian describes a model with two valence orbitals on each
-atom (site) ideally of differnet symmetry (i.e. orthogonal, e.g. $a,b$). A schematic is shown in
-Figure:~\ref{fig:deham}.
-
-\begin{figure}[ht]
-  \centering
-\begin{modiagram}[names]
- \atom[$1$]{left}{
-    1s = { 0; up} ,
-    2s = { 1; up} ,
- }
-
- \atom[$2$]{right}{
-    1s = { 0; up} ,
-    2s = { 1;   } ,
- }
- \node[right,xshift=4mm] at (1sright) {$b$};
- \node[right,xshift=4mm] at (2sright) {$a$};
- \node[left,xshift=-4mm] at (1sleft) {$b$};
- \node[left,xshift=-4mm] at (2sleft) {$a$};
-
- \draw[<-,gray,semithick]   (2sright) edge[bend right] node [left] {} (2sleft);
- \draw[<->,gray,semithick] (1sright) edge[bend left] node [left] {} (1sleft);
- \draw[<->,gray,semithick] (1sleft) edge[bend left] node [left] {} (2sleft);
-
- \node[left,xshift=2.3cm, yshift=-9mm] at (1sleft) {$J$};
- \node[left,xshift= 4mm, yshift=5mm] at (1sleft) {$K$};
- \node[left,xshift=2.3cm, yshift=-0mm] at (2sleft) {$t$};
-
- \end{modiagram}
-  \caption{\label{fig:deham} Orbital diagram representing the mail interactions of the double exchange model with two valence orbitals on each atom.}
-\end{figure}&
-
-In Eq:~\ref{eq:demodel}, the spins of the electrons are represented by $S_a$,
-where the subscript $a$ denotes the orbital on which the electron resides.  The
-creation and annahilation operators of electrons are represented by
-$\hat{c}^{\dagger}$ and $\hat{C}$ respectively. The parameters in the model
-Hamiltonian are defined as follows:
-
-\begin{itemize}
-
-\item $K$ - The local exchange integral. This exchange integral represents
-  Hund's rule and is always positive. The local exchange favors parallel
-  coupling i.e. a local high spin determinant.
-
-\item $J$ - The kinetic exchange interaction between orbitals of symmetry $a$
-  on neighboring sites. This integral is responsible of the anti-parallel coupling.
-
-\item $t$ - The kinetic energy integral or the hopping term. The
-  transfer of electrons from one atom to the neighboring atom is represented
-  by the hopping term. This also favors parallel coupling when taken along with
-  the exchange integral $K$.
-
-\item $V$ - The hole repulsion term. This takes into account the repulsion between
-  holes which are on neighboring sites $V_{NN}$ or next-nearest neighboring sites $V_{NNN}$. The hole repulsion indirectly takes into account the repulsion between
-  electrons occupying nearby sites.\cite{calzado_proposal_2001}
-
-\end{itemize}
-
-\section{Parameter Space}
-
-All the parameters of the model are important for understanding the collective
-properties of the double exchange hamiltonian. Here we give the order of magnitude
-of all the parameters used keeping in mind that we target molecules based on
-transition metal atoms.
-Previous studies using \textit{ab initio} methods in order to extract model
-parameters for various transition metal atoms such as Cu, Mn, and Ni have
-provided realistic order of magnitudes of the values of the parameters.
-In the present analysis, we use the full range of values in order to represent
-the full range of transition metal atoms.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{||c||}
- \hline
- Parameters  \\ [0.5ex]
- \hline\hline
- \\
-    $ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
-    $ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
-    $ 0.4 \le K \le 0.8 $                                    \\ [1ex]
-    $ V_{NN} = \frac{\alpha}{2r}\ ;\ 0.5 \le \alpha \le 0.8 $ \\ [1ex]
-    $ V_{NNN} = \alpha V_{NN} $                                \\ [1ex]
- \hline
-\end{tabular}
-\label{tab:params}
-\caption{Table with range of parameter values.}
-\end{table}
-
-Including the hole repulsion term significantly changes the low energy physics
-of the model as shown by previous work\cite{calzado_proposal_2001}. Here we will
-study the influence in the variation of all the above parameters.
-
-
-\chapter{Methodology}
-
-The double exchange hamiltonian is studied for one dimensional chain
-of sites containing holes with a doping ratio of 1:3 i.e. one hole for every
-three sites. This follows our previous study which shows that for
-the physically meaningful range of parameter values (Table:~\ref{tab:params}),
-a single hole aligns about three sites.\cite{crystals_chilkuri}
-
-\section{Exact diagonalization}
-
-An exact diagonalization method is used to obtain many low energy states of the
-hamiltonian. Due to the exponential growth of the hilbert space with the number
-of sites, exact diagonalization becomes challenging.Here we use our home made
-code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to perform exact diagonalization and
-use a large number of high performance compute nodes for distributed storage of
-the hamiltonian matrix and eigenvectors. We have used DEHam\cite{deham} to
-perform exact diagonalization of very large number of sites up to 18 sites
-containing 36 orbitals with 6 holes which corresponds to a hilbert space of
-about $0.5 \times 10^9$ determinants.
-
-\section{Model space}
-
-\section{Model Hamiltonian}
-
-\section{Projector}
-
-\section{Effective Hamiltonian}
-
-\section{Real Space Renormalization Group}
-
-\chapter{Results}
-
-\section{Hole repulsion}
-
-%TODO
-
-\subsection{Weight vs $J$}
-\subsubsection{Variation with Nsites}
-\begin{figure}[ht]
-\centering
-    \hspace{-1.5cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-0.png}
-    \end{minipage}
-    \hspace{2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{W_vs_J_sites_3-xrep-0.png}
-    \end{minipage}
-    \caption{\label{fig:} Weight as a function of J$$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
-\end{figure}
-
-
-
-\subsubsection{Variation with Repulsion}
-\begin{figure}[h!]
-\centering
-    \hspace{-2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-01.png}
-    \end{minipage}
-    \hspace{2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-225.png}
-    \end{minipage}
-    \caption{\label{fig:} Weight as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
-\end{figure}
-
-
-
-\subsection{Influence of repulsion}
-\subsubsection{Variation of maximal weight}
-\begin{figure}[h!]
-\centering
-    \hspace{-2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{Wmax_vs_xrep0v1.png}
-    \end{minipage}
-    \hspace{2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{Wmax_vs_xrep0vn.png}
-    \end{minipage}
-    \caption{\label{fig:} Maximal weight as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
-\end{figure}
-\subsubsection{Variation of $J$}
-\begin{figure}[h!]
-\centering
-    \hspace{-2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{J_vs_xrepv1.png}
-    \end{minipage}
-    \hspace{2cm}
-    \begin{minipage}{0.4\textwidth}
-    \includegraphics[scale=0.4]{J_vs_xrepvn.png}
-    \end{minipage}
-    \caption{\label{fig:} Value of $J$ for which the maximal weight is reached as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
-\end{figure}
-\subsection{RSRG}
-
-\chapter{Discussion}
-
-\chapter{Conclusion}
-
+	\begin{titlepage}
+		\begin{center}
+			%\vspace{-2cm}
+			\includegraphics[width = 0.2\textwidth]{lcpq.png} \hspace{0.5cm}
+			\includegraphics[width = 0.2\textwidth]{irsamac.png} \hspace{0.5cm}
+			\includegraphics[width = 0.2\textwidth]{ups.png} \hspace{0.5cm}
+			\includegraphics[width = 0.25\textwidth]{TCCM.png} \\
+			\vspace{1cm}
+			\Large
+			{Master studies in Theoretical Chemistry and Computational Modelling\\
+				Laboratoire de chimie et physique quantiques\\
+				Université Toulouse III - Paul Sabatier\\
+				%\end{center}
+				
+				%\includegraphics[width = 0.10\textwidth]{insteclogo} \hspace{2cm}
+				
+				%\includegraphics[width = 0.10\textwidth]{UH_logo.png} \\
+				\vspace{-0.5cm}
+				
+				
+				
+				%\vspace{0.5cm}		
+				
+				
+				
+				\vspace{2cm}
+				\Huge
+				\textbf{ \color{MSUgreen} Modeling properties of the double exchange model hamiltonian }
+				
+				\vspace{3cm}
+				\Large
+				\begin{tabular}{l l}			
+					{\bf Author:}   & Jos\'e David Crem\'e \\[1cm]
+					{\bf Supervisors:} & Vijay G. Chilkuri \\
+					& Nicolas Suaud
+				\end{tabular}
+			}
+			
+			\vspace{3cm}
+			\Large
+			Toulouse, 2023 \\
+			
+			\vspace{0.8cm}
+			
+		\end{center}
+	\end{titlepage}
+	%\maketitle
+	%\thispagestyle{empty}
+	\tableofcontents
+	\chapter*{Introduction}
+	\addcontentsline{toc}{chapter}{Introduction}
+	
+	Introduce the following topics
+	\begin{itemize}
+		\item Colossal magnetic resistance
+		\item Anomalous behavior of magnetic susceptibility in linear chain of Nickelates
+	\end{itemize}
+	
+	\section*{Experimental studies}
+	\addcontentsline{toc}{section}{Experimental studies}
+	
+	One dimensional transition metal chains have been synthesized and studied in
+	literature.~\cite{darriet_compound_1993,batlogg_haldane_1994} Experimental
+	studies on 1D Nickelates have shown that they exhibit a magnetic field
+	dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we focus
+	on the low temperature behavior of the 1D doped Nickelates close to the curie
+	temperature. Experimental studies of susceptibility of 1D doped Nickelates have
+	shown that near the Curie temperature, the materials show antiferromagnetic
+	behavior.\cite{Ramirez} This behavior is contrary to the usual double exchange
+	model where the holes are mobile throughout the chain. We develop arguments and
+	discuss some new ideas to explain this behavior of the magnetic susceptibility
+	in 1D doped Nickelates.
+	
+	\section*{Theoretical studies}
+	\addcontentsline{toc}{section}{Theoretical studies}
+	
+	One dimensional transition metal chains are immencely useful models
+	for theoretical analysis due to the existance of powerful techniques
+	such as the density matrix renormalization group (DMRG) and lanczos
+	exact diagonalization techniques. Such methods can be applied to
+	high accuracy and have been used to study models similar to the
+	one studied here but with important differences.\cite{dagotto_correlated_1994,patel_emergence_2020}
+	Further work by Dagotto. et. al have shown details of the existance
+	of a ferromagnetic polaron and its extent in such 1D models.\cite{malvezzi_origin_2001} However, the parameter range
+	that we have chosen for the current study relies on those extracted
+	by \textit{ab initio} calculstions on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
+	Therefore, the present study serves to augment the available literature
+	for parameter range extracted using \textit{ab initio} calculations.
+	
+	\chapter{Double Exchange Hamiltonian}
+	
+	The double exchange model is used to describe mixed lvalent transition
+	metal based molecules. The phenomenology of ferromagnetic and anti-ferromagnetic
+	behavior in such molecules is captured by the various parameters of the
+	double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
+	
+	\begin{equation}
+		%\begin{split}
+			\hat{H} = \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} 
+			+ \sum_{ij} 2J_a \hat{S}_{a_i}\cdot\hat{S}_{a_j} 
+			+ \sum_{ij} t\left( \hat{c}^{\dagger}_{a_i}\cdot\hat{c}_{a_j} + \text{h.c.}\right ) \\
+			+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) 
+			+ \sum_{i,i+2} V_{NNN}\left ( \delta_{n_i,0}\ \delta_{n_{i+2},0} \right )
+		%\end{split}
+		\label{eq:demodel}
+	\end{equation}
+	
+	The above Hamiltonian describes a model with two valence orbitals on each
+	atom (site) ideally of differnet symmetry (i.e. orthogonal, e.g. $a,b$). A schematic is shown in
+	Figure:~\ref{fig:deham}.
+	
+	%\begin{figure}[ht]
+	%	\centering
+	%	\begin{modiagram}[names]
+	%		\atom[$1$]{left}{
+	%			1s = { 0; up} ,
+	%			2s = { 1; up} ,
+	%		}
+	%		
+	%		\atom[$2$]{right}{
+	%			1s = { 0; up} ,
+	%			2s = { 1;   } ,
+	%		}
+	%		\node[right,xshift=4mm] at (1sright) {$b$};
+	%		\node[right,xshift=4mm] at (2sright) {$a$};
+	%		\node[left,xshift=-4mm] at (1sleft) {$b$};
+	%		\node[left,xshift=-4mm] at (2sleft) {$a$};
+	%		
+	%		\draw[<-,gray,semithick]   (2sright) edge[bend right] node [left] {} (2sleft);
+	%		\draw[<->,gray,semithick] (1sright) edge[bend left] node [left] {} (1sleft);
+	%		\draw[<->,gray,semithick] (1sleft) edge[bend left] node [left] {} (2sleft);
+			
+	%		\node[left,xshift=2.3cm, yshift=-9mm] at (1sleft) {$J$};
+	%		\node[left,xshift= 4mm, yshift=5mm] at (1sleft) {$K$};
+	%		\node[left,xshift=2.3cm, yshift=-0mm] at (2sleft) {$t$};
+			
+	%	\end{modiagram}
+	%	\caption{\label{fig:deham} Orbital diagram representing the mail interactions of the double exchange model with two valence orbitals on each atom.}
+	%\end{figure}&
+	
+	In Eq:~\ref{eq:demodel}, the spins of the electrons are represented by $S_a$,
+	where the subscript $a$ denotes the orbital on which the electron resides.  The
+	creation and annahilation operators of electrons are represented by
+	$\hat{c}^{\dagger}$ and $\hat{C}$ respectively. The parameters in the model
+	Hamiltonian are defined as follows:
+	
+	\begin{itemize}
+		
+		\item $K$ - The local exchange integral. This exchange integral represents
+		Hund's rule and is always positive. The local exchange favors parallel
+		coupling i.e. a local high spin determinant.
+		
+		\item $J$ - The kinetic exchange interaction between orbitals of symmetry $a$
+		on neighboring sites. This integral is responsible of the anti-parallel coupling.
+		
+		\item $t$ - The kinetic energy integral or the hopping term. The
+		transfer of electrons from one atom to the neighboring atom is represented
+		by the hopping term. This also favors parallel coupling when taken along with
+		the exchange integral $K$.
+		
+		\item $V$ - The hole repulsion term. This takes into account the repulsion between
+		holes which are on neighboring sites $V_{NN}$ or next-nearest neighboring sites $V_{NNN}$. The hole repulsion indirectly takes into account the repulsion between
+		electrons occupying nearby sites.\cite{calzado_proposal_2001}
+		
+	\end{itemize}
+	
+	\section{Parameter Space}
+	
+	All the parameters of the model are important for understanding the collective
+	properties of the double exchange hamiltonian. Here we give the order of magnitude
+	of all the parameters used keeping in mind that we target molecules based on
+	transition metal atoms.
+	Previous studies using \textit{ab initio} methods in order to extract model
+	parameters for various transition metal atoms such as Cu, Mn, and Ni have
+	provided realistic order of magnitudes of the values of the parameters.
+	In the present analysis, we use the full range of values in order to represent
+	the full range of transition metal atoms.
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{||c||}
+			\hline
+			Parameters  \\ [0.5ex]
+			\hline\hline
+			\\
+			$ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
+			$ 0.01\lvert t \rvert \le J \le 0.15\lvert t \rvert $    \\ [1ex]
+			$ 0.4 \le K \le 0.8 $                                    \\ [1ex]
+			$ V_{NN} = \frac{\alpha}{2r}\ ;\ 0.5 \le \alpha \le 0.8 $ \\ [1ex]
+			$ V_{NNN} = \alpha V_{NN} $                                \\ [1ex]
+			\hline
+		\end{tabular}
+		\label{tab:params}
+		\caption{Table with range of parameter values.}
+	\end{table}
+	
+	Including the hole repulsion term significantly changes the low energy physics
+	of the model as shown by previous work\cite{calzado_proposal_2001}. Here we will
+	study the influence in the variation of all the above parameters.
+	
+	
+	\chapter{Methodology}
+	
+	The double exchange hamiltonian is studied for one dimensional chain
+	of sites containing holes with a doping ratio of 1:3 i.e. one hole for every
+	three sites. This follows our previous study which shows that for
+	the physically meaningful range of parameter values (Table:~\ref{tab:params}),
+	a single hole aligns about three sites.\cite{crystals_chilkuri}
+	
+	\section{Exact diagonalization}
+	
+	An exact diagonalization method is used to obtain many low energy states of the
+	hamiltonian. Due to the exponential growth of the hilbert space with the number
+	of sites, exact diagonalization becomes challenging.Here we use our home made
+	code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to perform exact diagonalization and
+	use a large number of high performance compute nodes for distributed storage of
+	the hamiltonian matrix and eigenvectors. We have used DEHam\cite{deham} to
+	perform exact diagonalization of very large number of sites up to 18 sites
+	containing 36 orbitals with 6 holes which corresponds to a hilbert space of
+	about $0.5 \times 10^9$ determinants.
+	
+	\section{Model space}
+	
+	\section{Model Hamiltonian}
+	
+	\section{Projector}
+	
+	\section{Effective Hamiltonian}
+	
+	\section{Real Space Renormalization Group}
+	
+	\chapter{Results}
+	
+	\section{Hole repulsion}
+	
+	%TODO
+	
+	\subsection{Weight vs $J$}
+	\subsubsection{Variation with Nsites}
+	\begin{figure}[ht]
+		\centering
+		\hspace{-1.5cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-0.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{W_vs_J_sites_3-xrep-0.png}
+		\end{minipage}
+		\caption{\label{fig:} Weight as a function of $J$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
+	\end{figure}
+	
+	
+	
+	\subsubsection{Variation with Repulsion}
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-01.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-225.png}
+		\end{minipage}
+		\caption{\label{fig:} Weight as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
+	\end{figure}
+	
+	
+	
+	\subsection{Influence of repulsion}
+	\subsubsection{Variation of maximal weight}
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Wmax_vs_xrep0v1.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Wmax_vs_xrep0vn.png}
+		\end{minipage}
+		\caption{\label{fig:} Maximal weight as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+	\end{figure}
+	\subsubsection{Variation of $J$}
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{J_vs_xrepv1.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{J_vs_xrepvn.png}
+		\end{minipage}
+		\caption{\label{fig:} Value of $J$ for which the maximal weight is reached as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+	\end{figure}
+	\subsection{RSRG}
+	
+	\chapter{Discussion}
+	
+	\chapter{Conclusion}
+	\bibliography{biblio} % Use the example bibliography file sample.bib
+	\bibliographystyle{plain} % Plain referencing style
 \end{document}
 
 
@@ -296,4 +399,6 @@ about $0.5 \times 10^9$ determinants.
 %*************************************************************************
 % Bibliographies
 %*************************************************************************
-\printbibliography
+%\printbibliography
+\bibliography{biblio.bib} % Use the example bibliography file sample.bib
+\bibliographystyle{plain} % Plain referencing style
