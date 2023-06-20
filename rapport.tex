@@ -15,7 +15,11 @@ sorting=ynt
 \usepackage{braket}
 \usepackage{modiagram}
 \usepackage{tabularx}
-
+\usepackage{amsmath}
+\usepackage{chemfig}
+\usepackage{modiagram}
+\usepackage{mhchem}
+\usepackage{geometry}
 \graphicspath{ {./Figures/} }
 
 \pagestyle{fancy}
@@ -120,7 +124,7 @@ Figure:~\ref{fig:deham}.
 
  \end{modiagram}
   \caption{\label{fig:deham} Orbital diagram representing the mail interactions of the double exchange model with two valence orbitals on each atom.}
-\end{figure}
+\end{figure}&
 
 In Eq:~\ref{eq:demodel}, the spins of the electrons are represented by $S_a$,
 where the subscript $a$ denotes the orbital on which the electron resides.  The
@@ -219,27 +223,66 @@ about $0.5 \times 10^9$ determinants.
 
 %TODO
 
-\subsection{Weight vs J}
+\subsection{Weight vs $J$}
 \subsubsection{Variation with Nsites}
-\subsubsection{Variation with Repulsion}
-
 \begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.5]{12_4h_J_wmax_vs_xrep.pdf}
-    \caption{\label{fig:}Variation of the value of $J$ for which we have a maximum in the weight vs the value of hole repulsion $V$. }
+\centering
+    \hspace{-1.5cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-0.png}
+    \end{minipage}
+    \hspace{2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{W_vs_J_sites_3-xrep-0.png}
+    \end{minipage}
+    \caption{\label{fig:} Weight as a function of J$$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
 \end{figure}
 
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.5]{Wmax_vs_J_xrep525.png}
-    \caption{\label{fig:}Maximal weight as a function of J for xrep 525. }
+
+\subsubsection{Variation with Repulsion}
+\begin{figure}[h!]
+\centering
+    \hspace{-2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-01.png}
+    \end{minipage}
+    \hspace{2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-225.png}
+    \end{minipage}
+    \caption{\label{fig:} Weight as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
 \end{figure}
 
-\subsection{$J_{eff}$ vs $J$}
-\subsubsection{Variation with Nsites}
-\subsubsection{Variation with Repulsion}
 
+
+\subsection{Influence of repulsion}
+\subsubsection{Variation of maximal weight}
+\begin{figure}[h!]
+\centering
+    \hspace{-2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{Wmax_vs_xrep0v1.png}
+    \end{minipage}
+    \hspace{2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{Wmax_vs_xrep0vn.png}
+    \end{minipage}
+    \caption{\label{fig:} Maximal weight as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+\end{figure}
+\subsubsection{Variation of $J$}
+\begin{figure}[h!]
+\centering
+    \hspace{-2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{J_vs_xrepv1.png}
+    \end{minipage}
+    \hspace{2cm}
+    \begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.4]{J_vs_xrepvn.png}
+    \end{minipage}
+    \caption{\label{fig:} Value of $J$ for which the maximal weight is reached as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+\end{figure}
 \subsection{RSRG}
 
 \chapter{Discussion}
