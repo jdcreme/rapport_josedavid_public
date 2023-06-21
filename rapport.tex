@@ -3,10 +3,10 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage[spanish]{babel}  %Cosas en español
+%\usepackage[spanish]{babel}  %Cosas en español
 
 % ---------------- Puntos decimales en lugar de comas para los numeros ---------------------------------
-\decimalpoint
+%\decimalpoint
 
 %--------------------------------------------- Estilo de las paginas -----------------------------------
 \usepackage[letterpaper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
@@ -136,6 +136,7 @@
 	\end{titlepage}
 	%\maketitle
 	%\thispagestyle{empty}
+	\setcounter{page}{1}
 	\tableofcontents
 	\chapter*{Introduction}
 	\addcontentsline{toc}{chapter}{Introduction}
@@ -185,13 +186,13 @@
 	double exchange model Hamiltonian (Eq:~\ref{eq:demodel}).
 	
 	\begin{equation}
-		%\begin{split}
-			\hat{H} = \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} 
+		\begin{split}
+			\hat{H} & = \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} 
 			+ \sum_{ij} 2J_a \hat{S}_{a_i}\cdot\hat{S}_{a_j} 
 			+ \sum_{ij} t\left( \hat{c}^{\dagger}_{a_i}\cdot\hat{c}_{a_j} + \text{h.c.}\right ) \\
-			+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) 
+		&	+ \sum_{i,i+1} V_{NN}\left ( \delta_{n_i,0}\ \delta_{n_{i+1},0} \right ) 
 			+ \sum_{i,i+2} V_{NNN}\left ( \delta_{n_i,0}\ \delta_{n_{i+2},0} \right )
-		%\end{split}
+		\end{split}
 		\label{eq:demodel}
 	\end{equation}
 	
@@ -317,16 +318,16 @@
 	
 	\section{Effective Hamiltonian}
 	
-	\section{Real Space Renormalization Group}
+	%\section{Real Space Renormalization Group}
 	
-	\chapter{Results}
+	\begin{chapter}{Results and discussion}
 	
-	\section{Hole repulsion}
+	%\section{Hole repulsion}
 	
 	%TODO
 	
-	\subsection{Weight vs $J$}
-	\subsubsection{Variation with Nsites}
+	\section{Weight vs $J$}
+	\subsection{Variation with the number of sites}
 	\begin{figure}[ht]
 		\centering
 		\hspace{-1.5cm}
@@ -337,12 +338,14 @@
 		\begin{minipage}{0.4\textwidth}
 			\includegraphics[scale=0.4]{W_vs_J_sites_3-xrep-0.png}
 		\end{minipage}
-		\caption{\label{fig:} Weight as a function of $J$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
+		\caption{\label{fig_w69} Weight (W) as a function of $J$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
 	\end{figure}
+	Figure \ref{fig_w69} shows the weight of the wave function projected in the model space as afunction of J for 6$_{2h}$ (left) and 9$_{3h}$ (right), for each value of spin is represented the one with a bigger weight. This confirms that it is possible to have an interval of values of J in which the weight reach excellent values (even $>$ 90$\%$ in some cases). It is possible to see that weights for 9$_{3h}$ are smaller than those of 6$_{2h}$ this due to the fact that when increasing the size of the system it also increase the number of determinants out of the model space. However this decreasing in the weight is is expected to converge in the thermodinamyc limit, in fact, the sum of the weights over all the determinants is 1 as it is an orthonormal space. In all the cases the highest spin state does not depend on $J$.
+	 
+	 In a first moment weight increases with $J$ this is because for a small value of $J$ the system is completely governed by $t$ and that will favor the ionic determinants, but after the weight falls drastically as J favors the antiferromagnetic couplings inside the boxes.
 	
 	
-	
-	\subsubsection{Variation with Repulsion}
+	\subsection{Variation with Repulsion}
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
@@ -353,13 +356,15 @@
 		\begin{minipage}{0.4\textwidth}
 			\includegraphics[scale=0.4]{W_vs_J_sites_2-xrep-225.png}
 		\end{minipage}
-		\caption{\label{fig:} Weight as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
+		\caption{\label{fig_0_225} Weight (W) as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
 	\end{figure}
 	
+	In figure \ref{fig_0_225} are shown the weight as a function of $J$ without hole repulsion (left) and a hole repulsion with $\alpha=2.25|t|$ (right). Here it is possible to see the same tendence but repulsion increases the weight in the model space as it forces the holes away from each other and this decreases the weight of the ionic determinants. 
 	
+	\section{Influence of hole repulsion}
+	\subsection{Variation of maximal weight}
+	In order to better understand the effect of hole repulsion it is convenient to analize the maximal value of weight for each state for several values of $\alpha$ as displayed in figure \ref{fig_v1n} for two models: at left only considering repulsion between first neighbors and at right repulsion between all the holes as a function of distance. At the begining there is an increase of the weight as explained above but for bigger values of repulsion there is a slight decrease as it will force the holes to be at the borders, and the spatial projector is the solution of Hückel in wich the hole at the exterior border of each box has a weight of 25$\%$, so even if itgains in weight the decreasing of the others will cause a global but slight decrease.So with $\alpha=2.25|t|$ we have the maximal values of weight.  
 	
-	\subsection{Influence of repulsion}
-	\subsubsection{Variation of maximal weight}
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
@@ -370,28 +375,84 @@
 		\begin{minipage}{0.4\textwidth}
 			\includegraphics[scale=0.4]{Wmax_vs_xrep0vn.png}
 		\end{minipage}
-		\caption{\label{fig:} Maximal weight as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+		\caption{\label{fig_v1n} Maximal weight (W$_{max}$)as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
-	\subsubsection{Variation of $J$}
+	
+	\subsection{Impact on $J$ and $t$}
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.4]{J_vs_xrepv1.png}
+			\includegraphics[scale=0.38]{J_vs_xrepv1.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.4]{J_vs_xrepvn.png}
+			\includegraphics[scale=0.38]{J_vs_xrepvn.png}
 		\end{minipage}
-		\caption{\label{fig:} Value of $J$ for which the maximal weight is reached as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+		\caption{\label{fig_jv1n} Value of $J$ for which the maximal weight is reached ($J_m$) as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
-	\subsection{RSRG}
+	Repulsion decreases the kinetic energy of the system as it constrains the movement of holes, this will have a direct impact in the effect of $t$. As we pointed before there is a competition between $J$ (which favors antiferromagnetic coupling) and $t$ (which favors ferromagnetic coupling), so this negative impact of repulsion on the effect of $t$ will cause that for even smaller values of $J$ the ferromagnetic coupling becomes stronger and makes the weight falls abruptely as discussed in section 3.1.1. Therefore the maximal value of weight is reached for smaller values of $J$ as shown in figure \ref{fig_jv1n} in which it is possible to see the value of $J$ for which the maximal weight is reached for several values of $\alpha$ and also for the two models explained above.
+	%\subsection{RSRG}
 	
-	\chapter{Discussion}
+	\section{Results of $J_{eff}$}
+	\subsection{Influence of the number of sites}
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_J_sites_3-xrep-0.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_J_sites_3-xrep-225.png}
+		\end{minipage}
+		\caption{\label{fig_arj} Value of $J_{eff}$ as a function of $J$ for $\alpha=0|t|$ (left) and $\alpha=2.25|t|$ (right). }
+	\end{figure}
+
 	
-	\chapter{Conclusion}
-	\bibliography{biblio} % Use the example bibliography file sample.bib
+	
+	
+	\subsection{Influence of hole repulsion}
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_J_ar2.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_J_ar3.png}
+		\end{minipage}
+		\caption{\label{fig_arj} Value of $J_{eff}$ as a function of $J$ for 6$_{2h}$ (left) and 6$_{2h}$ (right). }
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\hspace{-2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_xrep_ar2.png}
+		\end{minipage}
+		\hspace{2cm}
+		\begin{minipage}{0.4\textwidth}
+			\includegraphics[scale=0.4]{Jeff_vs_xrep_ar3.png}
+		\end{minipage}
+		\caption{\label{fig_arxrep} Value of $J_{eff}$ as a function of $\alpha$ for 6$_{2h}$ (left) and 6$_{2h}$ (right). in both cases $J=0.062 |t|$ }
+	\end{figure}
+	\end{chapter} %{Discussion}
+	
+	\chapter*{Conclusions}
+	\addcontentsline{toc}{chapter}{Conclusions}
+	%\end{chapter}
+	\newpage
+	\pagenumbering{roman}
+	\renewcommand{\bibname}{References}
+	%\chapter*{References}
+		\bibliography{biblio} % Use the example bibliography file sample.bib
 	\bibliographystyle{plain} % Plain referencing style
+	\addcontentsline{toc}{chapter}{References}
+		\pagenumbering{roman}
+		\setcounter{page}{2}
+
 \end{document}
 
 
