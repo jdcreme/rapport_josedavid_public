@@ -142,6 +142,7 @@
 		\thispagestyle{empty}
 	\chapter*{Introduction}
 	\setcounter{page}{1}
+	\setlength{\parskip}{-1mm}
 	\addcontentsline{toc}{chapter}{Introduction}
 	
 	Colossal magnetoresistance (CMR) is the prperty of some materials to change their
@@ -258,7 +259,7 @@
 	
 	\begin{figure}[ht]
 		\centering
-			\includegraphics[scale=0.25]{DE.png}
+			\includegraphics[scale=0.2]{DE.png}
 		\caption{\label{fig:deham} Representation of a model system showing the interatction terms used in double exchange hamiltonian. }
 	\end{figure}
 	These Hamiltonians describe a model with two valence orbitals on each
@@ -379,7 +380,7 @@
 	home made code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to
 	perform exact diagonalization and use a large number of high performance
 	compute nodes for distributed storage of the hamiltonian matrix and
-	eigenvectors. We have used DEHam\cite{deham} to perform exact
+	eigenvectors. We have used DEHam\cite{DEHamam} to perform exact
 	diagonalization of very large number of sites up to 18 sites containing 36
 	orbitals with 6 holes which corresponds to a hilbert space of about $0.5
 	\times 10^9$ determinants.
@@ -387,7 +388,7 @@
 	\section{Model space}
 	\begin{figure}[ht]
 		\centering
-			\includegraphics[scale=0.25]{boites.png}
+			\includegraphics[scale=0.2]{boites.png}
 		\caption{\label{boites}. Representation of the local ferromagnetic polarons formed by spins aligned by a single hole for 6$_{2h}$.}
 	\end{figure}
 	As discussed above, a hole aligns about three sites. That allows one to
@@ -605,11 +606,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{W_vs_J_sites_2-xrep-0.png}
+			\includegraphics[scale=0.3]{W_vs_J_sites_2-xrep-0.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{W_vs_J_sites_3-xrep-0.png}
+			\includegraphics[scale=0.3]{W_vs_J_sites_3-xrep-0.png}
 		\end{minipage}
 		\caption{\label{fig_w69} Weight (W) as a function of $J$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
 	\end{figure}
@@ -623,13 +624,18 @@
 	normalization of the wavefunction, the absolute weight of the model space
 	decreases. In other words, the ratio of the size of the model space vs the
 	total size of the Hilbert space goes to zero with increasing number of sites.
+	
+	\begin{figure}[h!]
+		\centering
+			\includegraphics[scale=0.22]{determinants.jpg}
+		\caption{\label{determinants}. Representation of the determinants with maximal weight on the ground state for three different values of $J$ in 6$_{2h}$.}
+	\end{figure}
 	 
 	 Initially, the weight increases with increasing magnitude of $J$ this is
 	 because for a small value of $J$ the system is completely governed by $t$
 	 which will favor the ionic determinants. Howeveer, after a maximum, the
 	 weight falls drastically as larger values of $J$ favors the
-	 antiferromagnetic couplings inside the boxes and hense the component due to spin $S=5 \slash 2$ decreases.
-	
+	 antiferromagnetic couplings inside the boxes and hense the component due to spin $S=5 \slash 2$ decreases. In order to ilustrated this figures \ref{determinants} shows the determinants with maximal weight on the ground state for three different values of $J$, in a) for $J=0.01|t|$, a very small values, the ground state is $S=5$ and the determinant having the maximal weight is all the electrons aligned and the hole in the middle of each box, as the Hückel wavefunction predicts. Then in b) for $J=0.1|t|$, an intermediate value, even if inside the boxes ferromagnetic coupling is favored the coupling between them is antiferromagnetic and the ground state is $S=0$. Finally, in c) when $J=0.2|t|$, a large value, there is no longer ferromagnetic coupling between the boxes.	
 	
 	\subsection{Variation with Repulsion}
 
@@ -637,11 +643,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{W_vs_J_sites_2-xrep-01.png}
+			\includegraphics[scale=0.3]{W_vs_J_sites_2-xrep-01.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{W_vs_J_sites_2-xrep-225.png}
+			\includegraphics[scale=0.3]{W_vs_J_sites_2-xrep-225.png}
 		\end{minipage}
 		\caption{\label{fig_0_225} Weight (W) as a function of $J$ for $\alpha = 0 |t|$ (left) and $\alpha \slash 2 = 2.25|t|$ (right). }
 	\end{figure}
@@ -679,11 +685,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Wmax_vs_xrep0v1.png}
+			\includegraphics[scale=0.3]{Wmax_vs_xrep0v1.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Wmax_vs_xrep0vn.png}
+			\includegraphics[scale=0.3]{Wmax_vs_xrep0vn.png}
 		\end{minipage}
 		\caption{\label{fig_v1n} Maximal weight (W$_{max}$) for each state as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
@@ -693,11 +699,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{J_vs_xrepv1.png}
+			\includegraphics[scale=0.3]{J_vs_xrepv1.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{J_vs_xrepvn.png}
+			\includegraphics[scale=0.3]{J_vs_xrepvn.png}
 		\end{minipage}
 		\caption{\label{fig_jv1n} Value of $J$ for which the maximal weight is reached ($J_m$) as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
@@ -731,17 +737,17 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_J_sites_3-xrep-0.png}
+			\includegraphics[scale=0.3]{Jeff_vs_J_sites_3-xrep-0.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_J_sites_3-xrep-225.png}
+			\includegraphics[scale=0.3]{Jeff_vs_J_sites_3-xrep-225.png}
 		\end{minipage}
 		\caption{\label{fig_arj} Value of $J_{eff}$ as a function of $J$ for $\alpha=0|t|$ (left) and $\alpha=2.25|t|$ (right). }
 	\end{figure}
 
 	Figure \ref{fig_arj} shows the values of $J_{eff}$ obtained by fitting the
-	effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$ and
+	effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$, and
 	for two different values of $\alpha$ in an interval in which the
 	wavefunction has a good projection. There is an interval in which $J_{eff}$
 	becomes antiferromagnetic (below the red line). As it is observed the values
@@ -756,11 +762,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_J_ar2.png}
+			\includegraphics[scale=0.3]{Jeff_vs_J_ar2.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_J_ar3.png}
+			\includegraphics[scale=0.3]{Jeff_vs_J_ar3.png}
 		\end{minipage}
 		\caption{\label{fig_arj1} Value of $J_{eff}$ as a function of $J$ for 6$_{2h}$ (left) and 6$_{2h}$ (right). }
 	\end{figure}
@@ -769,11 +775,11 @@
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_xrep_ar2.png}
+			\includegraphics[scale=0.3]{Jeff_vs_xrep_ar2.png}
 		\end{minipage}
 		\hspace{2cm}
 		\begin{minipage}{0.4\textwidth}
-			\includegraphics[scale=0.35]{Jeff_vs_xrep_ar3.png}
+			\includegraphics[scale=0.3]{Jeff_vs_xrep_ar3.png}
 		\end{minipage}
 		\caption{\label{fig_arxrep} Value of $J_{eff}$ as a function of $\alpha$ for 6$_{2h}$ (left) and 6$_{2h}$ (right). in both cases $J=0.062 |t|$ }
 	\end{figure}
@@ -789,11 +795,37 @@
 	values. This results is ilustrated in figure \ref{fig_arxrep} in which
 	$J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$. This
 	is a very interesting result which we have not yet been able to explain.
-
-
+   \section{Spectrum}
+   
+   \begin{table}[H]
+   \label{spectrum}
+	\caption{Comparison of low energy spectrum calculated by double change hamiltonian and our model hamiltonian }
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			 spin & $E_{DEHam}(10^{-3}|t|)$ & $E_{MHam}(10^{-3}|t|)$ & $\Delta E(10^{-3}|t|)$ \\
+			\hline
+			5 & 0  & 0  & 0  \\
+			\hline
+			4 & -2.69825 & -3.184 & 0.48575 \\
+			\hline
+			3 & -4.85685 & -5.220 & 0.36315 \\
+			\hline
+			2 & -6.47580 & -6.565 & 0.08920 \\
+			\hline
+			1 & -7.55510 & -7.395 & 0.1601 \\
+			\hline
+			0 & -8.09475 & -7.793 & 0.3017  \\
+			\hline
+			%$J_2-J_1$ & 0.072 & 0.024 & 0.104 \\
+			%\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+In the tabe \ref{spectrum} is showed the low energy spectrum calculated with double exchange hamiltonian and with our hamiltonian, this allows us to have a measurement of how good the model reproduce the system. As it is possible to see there are a reasonable agreement for both models. The state $S=5$ is taken as a reference so it is always zero and the the others values shows the energy gap between them and $S=5$
 	\end{chapter} %{Discussion}
 	
-	\chapter*{Conclusions}
+	\chapter*{ General Conclusions}
 	\addcontentsline{toc}{chapter}{Conclusions}
 	%\end{chapter}
 	\newpage
