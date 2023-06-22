@@ -517,45 +517,80 @@
 	$\hat{\mathcal{P}}\cdot\hat{\mathcal{P}} = \hat{\mathcal{P}}$.
 
 	\section{Effective Hamiltonian}
-	Let $\hat{H}$ be the "complete" hamiltonian describing a quantum system in an space of N determinants, It has, therefore, N eigenvalues and N eigenstates which fulfill the time-independent Schrödinger equation :
+
+	Let $\hat{H}$ be the original hamiltonian describing a quantum system in
+	an space of $N$ determinants, It has, therefore, $N$ eigenvalues and $N$
+	eigenstates which fulfill the time-independent Schrödinger equation :
+
 	\begin{equation}
-	    \hat{H} |\Psi_N\rangle=E_I|\Psi_N\rangle
+	    \hat{H} |\Psi_I\rangle=E_I|\Psi_I\rangle
 	\end{equation}
-	Then it is possible to define an effective hamiltonian $\hat{H}_{eff}$ which acts in a subspace of reduced dimensionality $n, n<N$, called space model, and reproduces the exact eigenvalues for a limited number of eigenstates of $\hat{H}$
+
+	Then, it is possible to define an effective hamiltonian $\hat{H}_{eff}$ which
+	acts on a subspace of reduced dimensionality $n, n<N$, called the model space,
+	and reproduces the $n$ exact eigenvalues of the original hamiltonian
+	$\hat{H}$.
+
 	\begin{equation}
-	    \hat{H} |\tilde{\Psi}_n\rangle=E_I|\tilde{\Psi}_n\rangle
+	    \hat{H}_{eff} |\tilde{\Psi}_I\rangle=E_I|\tilde{\Psi}_I\rangle;\ 1 \le I \le n
 	\end{equation}
-	This states $|\tilde{\Psi}_n\rangle$ are the projection of a $n$ states of $|\Psi_N\rangle$, called target space, in the model space, obtained by applying the projector defined in the previous section:
+
+	This states $|\tilde{\Psi}_n\rangle$ are the projected and orthonormalized
+	components of $n$ states of the original hamiltonian $|\Psi_N\rangle$, onto
+	the model space.  Projection of the original vectors on the model space can
+	be obtained by applying the projector defined in the previous section:
+
 	\begin{equation}
-	    |\tilde{\Psi}_n\rangle=\hat{\mathcal{P}}|\Psi_N\rangle
+	    |\Phi_n\rangle=\hat{\mathcal{P}}|\Psi_N\rangle
 	\end{equation}
-	Then the weight of the "complete" wavefunction in the model space is:
+
+	Then the weight of the "complete" wavefunction in the model space is defined as:
+
 	\begin{equation}
-	    W=\langle \tilde{\Psi}_n|\tilde{\Psi}_n\rangle 
+	    W_i =\langle \Phi_i|\Phi_i\rangle
 	\end{equation}
-	It is evident that the set of states $|\tilde{\Psi}_n\rangle$ are not normalized, but they can be orthonormalized following the procedure proposed by  des Cloizeaux \cite{Cloizeaux} as follow:\\
-	Let us define the overlap matrix $S$ as:
-	\begin{equation}
-	   S_{ij}= \langle \tilde{\Psi}_i|\tilde{\Psi}_j\rangle 
-	\end{equation}
-	This matrix has as diagonal elements the weights of each $|\Psi_N\rangle$, it can be expressed in terms of a diagonal matrix $D$ with diagonal elements $d_{ii}$ as:
+
+	It is evident that the set of states $|\Phi_n\rangle$ are not orthogonal nor
+	normalized, but they can be orthonormalized following the procedure proposed
+	by  des Cloizeaux \cite{Cloizeaux} as we show in what follows.
+
+	Let us define the overlap matrix $S$ as $S_{ij} = \langle \Phi_i |
+	\Phi_j\rangle$.  This matrix has as diagonal elements the weights of each
+	$|\Psi_N\rangle$.  The weights of the projection for each state can also be
+	defined as  $W_i=S_{ii}$.  The weight matrix can be expressed in terms of a
+	diagonal matrix $D$ with diagonal elements $d_{ii} = S_{ii}$. One can
+	diagonalize the overlap matrix to obtain the eigenvalues and eigenvectors as
+	follows.
+
 	\begin{equation}
 	    S=U^{-1}DU
 	\end{equation}
-	Then it is defined a new diagonal matrix $D^{-1\slash 2}$ with diagonal elements $d^{-1\slash 2}_{ii}=\dfrac{1}{\sqrt{d_{ii}}}$, then:
+
+	Then a new diagonal matrix $D^{-1\slash 2}$ is computed with diagonal
+	elements $d^{-1\slash 2}_{ii}=\dfrac{1}{\sqrt{d_{ii}}}$, then:
+
 	\begin{equation}
 	   S^{-1\slash 2}=U^{-1}D^{-1\slash 2}U 
 	\end{equation}
-	Hence, it is possible to show that a new orthonormal set of states can be obtained as expressed in eq. \ref{eq:orthonormal}:
+
+	Hence, it is possible to show that a new orthonormal set of states can be
+	obtained as expressed in eq. \ref{eq:orthonormal}:
+
 	\begin{equation}
-	   |\Phi_n \rangle=|\tilde{\Psi}_n \rangle S^{-1 \slash 2}
+	   |\tilde{\Psi}_n \rangle=S^{-1 \slash 2}|\Phi_n \rangle
 	   \label{eq:orthonormal}
 	\end{equation}
+
 	Now the effective hamiltonian is defined as:
+
 	\begin{equation}
-	    \hat{H}_{eff}=V^{-1}EV
+	    \hat{H}_{eff}=\langle \tilde{\Psi} | \mathbf{E} | \tilde{\Psi} \rangle
 	\end{equation}
-	Where V is a matrix formed by all the states $|\Phi_n \rangle$ and $E$ is a diagonal matrix having as diagonal elements the eigenstates of the target space.
+
+	Where $\tilde{\Psi}$ is a matrix formed by all the states $|\tilde{\Psi}_n\rangle$ and $E$ is a
+	diagonal matrix having as diagonal elements the eigenstates of the target
+	space.
+
 	%\section{Real Space Renormalization Group}
 	
 	\begin{chapter}{Results and discussion}
