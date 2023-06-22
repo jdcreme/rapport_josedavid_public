@@ -380,7 +380,7 @@
 	home made code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to
 	perform exact diagonalization and use a large number of high performance
 	compute nodes for distributed storage of the hamiltonian matrix and
-	eigenvectors. We have used DEHam\cite{deham} to perform exact
+	eigenvectors. We have used DEHam\cite{DEHamam} to perform exact
 	diagonalization of very large number of sites up to 18 sites containing 36
 	orbitals with 6 holes which corresponds to a hilbert space of about $0.5
 	\times 10^9$ determinants.
@@ -796,14 +796,16 @@
 	$J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$. This
 	is a very interesting result which we have not yet been able to explain.
    \section{Spectrum}
+   
    \begin{table}[H]
+   \label{spectrum}
 	\caption{Comparison of low energy spectrum calculated by double change hamiltonian and our model hamiltonian }
 	\begin{center}
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			 spin & $E_{DEHam}(10^{-3}|t|)$ & $E_{MHam}(10^{-3}|t|)$ & $\Delta E(10^{-3}|t|)$ \\
 			\hline
-			5 & 3.320969$\cdot$ $10^{-16}$ & 0  & 3.320969$\cdot$ $10^{-16}$ \\
+			5 & 0  & 0  & 0  \\
 			\hline
 			4 & -2.69825 & -3.184 & 0.48575 \\
 			\hline
@@ -820,7 +822,7 @@
 		\end{tabular}
 	\end{center}
 \end{table}
-
+In the tabe \ref{spectrum} is showed the low energy spectrum calculated with double exchange hamiltonian and with our hamiltonian, this allows us to have a measurement of how good the model reproduce the system. As it is possible to see there are a reasonable agreement for both models. The state $S=5$ is taken as a reference so it is always zero and the the others values shows the energy gap between them and $S=5$
 	\end{chapter} %{Discussion}
 	
 	\chapter*{ General Conclusions}
