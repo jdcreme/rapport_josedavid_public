@@ -432,11 +432,11 @@
 
 	\begin{equation}
       \begin{blockarray}{cccc}
-      & $\|bc\rangle$ & $\|ac\rangle$ & $\|ab\rangle$ \\
+      & \|bc\rangle & \|ac\rangle & \|ab\rangle \\
       \begin{block}{c(ccc)}
-        $\|bc\rangle$ & 0 & t & 0 \\
-        $\|ac\rangle$ & t & 0 & t \\
-        $\|ab\rangle$ & 0 & t & 0 \\
+        \|bc\rangle & 0 & t & 0 \\
+        \|ac\rangle & t & 0 & t \\
+        \|ab\rangle & 0 & t & 0 \\
       \end{block}
       \end{blockarray}
 		\label{eq:demodel}
@@ -474,7 +474,7 @@
 
 
 	\begin{equation}
-			\hat{\mathcal{P}}_{spin}(M_{S_T}) & = \sum_{\substack{M_{S_1},M_{S_2}, \\ M_{S_1}+M_{S_2}=M_{S_T}}}
+			\hat{\mathcal{P}}_{spin}(M_{S_T})  = \sum_{\substack{M_{S_1},M_{S_2}, \\ M_{S_1}+M_{S_2}=M_{S_T}}}
 			\binom{5}{5 - 2 M_{S_1}}^{-1/2}\binom{5}{5 - 2 M_{S_2}}^{-1/2}
 			\left |\frac{5}{2},M_{S_R}\right\rangle\otimes\left|\frac{5}{2},M_{S_L}\right\rangle
 		\label{eq:demodel}
@@ -517,7 +517,45 @@
 	$\hat{\mathcal{P}}\cdot\hat{\mathcal{P}} = \hat{\mathcal{P}}$.
 
 	\section{Effective Hamiltonian}
-	
+	Let $\hat{H}$ be the "complete" hamiltonian describing a quantum system in an space of N determinants, It has, therefore, N eigenvalues and N eigenstates which fulfill the time-independent Schrödinger equation :
+	\begin{equation}
+	    \hat{H} |\Psi_N\rangle=E_I|\Psi_N\rangle
+	\end{equation}
+	Then it is possible to define an effective hamiltonian $\hat{H}_{eff}$ which acts in a subspace of reduced dimensionality $n, n<N$, called space model, and reproduces the exact eigenvalues for a limited number of eigenstates of $\hat{H}$
+	\begin{equation}
+	    \hat{H} |\tilde{\Psi}_n\rangle=E_I|\tilde{\Psi}_n\rangle
+	\end{equation}
+	This states $|\tilde{\Psi}_n\rangle$ are the projection of a $n$ states of $|\Psi_N\rangle$, called target space, in the model space, obtained by applying the projector defined in the previous section:
+	\begin{equation}
+	    |\tilde{\Psi}_n\rangle=\hat{\mathcal{P}}|\Psi_N\rangle
+	\end{equation}
+	Then the weight of the "complete" wavefunction in the model space is:
+	\begin{equation}
+	    W=\langle \tilde{\Psi}_n|\tilde{\Psi}_n\rangle 
+	\end{equation}
+	It is evident that the set of states $|\tilde{\Psi}_n\rangle$ are not normalized, but they can be orthonormalized following the procedure proposed by  des Cloizeaux \cite{Cloizeaux} as follow:\\
+	Let us define the overlap matrix $S$ as:
+	\begin{equation}
+	   S_{ij}= \langle \tilde{\Psi}_i|\tilde{\Psi}_j\rangle 
+	\end{equation}
+	This matrix has as diagonal elements the weights of each $|\Psi_N\rangle$, it can be expressed in terms of a diagonal matrix $D$ with diagonal elements $d_{ii}$ as:
+	\begin{equation}
+	    S=U^{-1}DU
+	\end{equation}
+	Then it is defined a new diagonal matrix $D^{-1\slash 2}$ with diagonal elements $d^{-1\slash 2}_{ii}=\dfrac{1}{\sqrt{d_{ii}}}$, then:
+	\begin{equation}
+	   S^{-1\slash 2}=U^{-1}D^{-1\slash 2}U 
+	\end{equation}
+	Hence, it is possible to show that a new orthonormal set of states can be obtained as expressed in eq. \ref{eq:orthonormal}:
+	\begin{equation}
+	   |\Phi_n \rangle=|\tilde{\Psi}_n \rangle S^{-1 \slash 2}
+	   \label{eq:orthonormal}
+	\end{equation}
+	Now the effective hamiltonian is defined as:
+	\begin{equation}
+	    \hat{H}_{eff}=V^{-1}EV
+	\end{equation}
+	Where V is a matrix formed by all the states $|\Phi_n \rangle$ and $E$ is a diagonal matrix having as diagonal elements the eigenstates of the target space.
 	%\section{Real Space Renormalization Group}
 	
 	\begin{chapter}{Results and discussion}
@@ -654,15 +692,6 @@
 	\section{Results of $J_{eff}$}
 
 	\subsection{Influence of the number of sites}
-
-	Figure \ref{fig_arj} shows the values of $J_{eff}$ obtained by fitting the
-	effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$ and
-	for two different values of $\alpha$ in an interval in which the
-	wavefunction has a good projection. There is an interval in which $J_{eff}$
-	becomes antiferromagnetic (below the red line). As it is observed the values
-	for both systems are pretty close, so in this range of values $J_{eff}$
-	seems to be transferable.
-
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
@@ -676,22 +705,19 @@
 		\caption{\label{fig_arj} Value of $J_{eff}$ as a function of $J$ for $\alpha=0|t|$ (left) and $\alpha=2.25|t|$ (right). }
 	\end{figure}
 
+	Figure \ref{fig_arj} shows the values of $J_{eff}$ obtained by fitting the
+	effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$ and
+	for two different values of $\alpha$ in an interval in which the
+	wavefunction has a good projection. There is an interval in which $J_{eff}$
+	becomes antiferromagnetic (below the red line). As it is observed the values
+	for both systems are pretty close, so in this range of values $J_{eff}$
+	seems to be transferable.
+
+	
+
 	
 	\subsection{Influence of hole repulsion}
-
-	In order to understand the influence of repulsion on $J_{eff}$, we have
-	performed the fit to obtain $J_{eff}$ for several values of $\alpha$ as
-	represented in figure \ref{fig_arj1}. Intersetingly, the $J_{eff}$ seems to
-	vary linearly with $J$ with a different slope for the ferromagnetic part and
-	the anti-ferromagnetic part. This suggests a possible existance of a phase
-	transition.
-
-	Upon increasing the repulsion, $J_{eff}$ goes faster to antiferromagnetic
-	values. This results is ilustrated in figure \ref{fig_arxrep} in which
-	$J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$. This
-	is a very interesting result which we have not yet been able to explain.
-
-	\begin{figure}[h!]
+		\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
 		\begin{minipage}{0.4\textwidth}
@@ -716,6 +742,20 @@
 		\end{minipage}
 		\caption{\label{fig_arxrep} Value of $J_{eff}$ as a function of $\alpha$ for 6$_{2h}$ (left) and 6$_{2h}$ (right). in both cases $J=0.062 |t|$ }
 	\end{figure}
+
+	In order to understand the influence of repulsion on $J_{eff}$, we have
+	performed the fit to obtain $J_{eff}$ for several values of $\alpha$ as
+	represented in figure \ref{fig_arj1}. Intersetingly, the $J_{eff}$ seems to
+	vary linearly with $J$ with a different slope for the ferromagnetic part and
+	the anti-ferromagnetic part. This suggests a possible existance of a phase
+	transition.
+
+	Upon increasing the repulsion, $J_{eff}$ goes faster to antiferromagnetic
+	values. This results is ilustrated in figure \ref{fig_arxrep} in which
+	$J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$. This
+	is a very interesting result which we have not yet been able to explain.
+
+
 	\end{chapter} %{Discussion}
 	
 	\chapter*{Conclusions}
