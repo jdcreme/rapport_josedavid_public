@@ -45,6 +45,7 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{pstricks}
+\usepackage{blkarray}
 %----------------------------------- Para hacer indice en panel lateral ----------------------------------
 \usepackage{hyperref}
 %\hypersetup{pdftex,colorlinks=true,allcolors=blue}
@@ -143,7 +144,16 @@
 	\setcounter{page}{1}
 	\addcontentsline{toc}{chapter}{Introduction}
 	
-	Colossal magnetoresistance is the prperty of some materials to change drastically their electric conductivity when applied a magnetic field, this change could be by several orders of magnitude. This phenomenon can be observed mainly in manganites and nickelates under dopping, as shown in figure 1. The double exchange hamiltonian is usually used in order to model 1D chains of nickelates and the main objective of this work is to understand the microscopic origin of colossal magnetoresistance and the properties of the double exchange hamiltonian and its parameters.
+	Colossal magnetoresistance (CMR) is the prperty of some materials to change their
+	electric conductivity drastically under the presence of a magnetic field.
+	This change could be by several orders of magnitude depending on the
+	temperature and the amount of doping. This phenomenon has been observed
+	mainly in manganites and nickelates under dopping, as shown in figure 1. The
+	double exchange hamiltonian is usually used in order to model 1D chains of
+	nickelates and the main objective of this work is to understand the
+	microscopic origin of colossal magnetoresistance and the goal for the
+	present master thesis is to analyse and understand some of the properties of
+	the double exchange hamiltonian and its parameters.
 	 
 	\begin{center}
 \begin{figure}[h!]
@@ -165,30 +175,35 @@
 	One dimensional transition metal chains have been synthesized and studied in
 	literature.~\cite{darriet_compound_1993,batlogg_haldane_1994} Experimental
 	studies on 1D Nickelates have shown that they exhibit a magnetic field
-	dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we focus
-	on the low temperature behavior of the 1D doped Nickelates close to the curie
-	temperature. Experimental studies of susceptibility of 1D doped Nickelates have
-	shown that near the Curie temperature, the materials show antiferromagnetic
-	behavior.\cite{Ramirez} This behavior is contrary to the usual double exchange
-	model where the holes are mobile throughout the chain. We develop arguments and
-	discuss some new ideas to explain this behavior of the magnetic susceptibility
-	in 1D doped Nickelates.
+	dependence in their resistivity upon doping.\cite{xu_holes_2000} Here, we
+	focus on the low temperature behavior of the 1D doped Nickelates close to
+	the curie temperature. Experimental studies of susceptibility of 1D doped
+	Nickelates have shown that near the Curie temperature, the materials show
+	antiferromagnetic behavior.\cite{Ramirez} This behavior is contrary to the
+	usual double exchange model where the holes are supposed to be mobile
+	throughout the chain. We develop arguments and discuss some new ideas to
+	explain this behavior of the magnetic susceptibility in 1D doped Nickelates.
 	
 	\section*{Theoretical studies}
 	\addcontentsline{toc}{section}{Theoretical studies}
 	
-	One dimensional transition metal chains are immencely useful models
-	for theoretical analysis due to the existance of powerful techniques
-	such as the density matrix renormalization group (DMRG) and lanczos
-	exact diagonalization techniques. Such methods can be applied to
-	high accuracy and have been used to study models similar to the
-	one studied here but with important differences.\cite{dagotto_correlated_1994,patel_emergence_2020}
-	Further work by Dagotto. et. al have shown details of the existance
-	of a ferromagnetic polaron and its extent in such 1D models.\cite{malvezzi_origin_2001} However, the parameter range
-	that we have chosen for the current study relies on those extracted
-	by \textit{ab initio} calculstions on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
-	Therefore, the present study serves to augment the available literature
-	for parameter range extracted using \textit{ab initio} calculations.
+	One dimensional transition metal chains are immencely useful models for
+	theoretical analysis due to the existance of powerful techniques such as the
+	density matrix renormalization group (DMRG) and lanczos exact
+	diagonalization techniques. Such methods can be applied to high accuracy and
+	have been used to study models similar to the one
+	studied.\cite{dagotto_correlated_1994,patel_emergence_2020} Further work by
+	Dagotto. et. al have shown details of the existance of a ferromagnetic
+	polaron and its extent in such 1D models.\cite{malvezzi_origin_2001}
+	However, the present study differs significantly from those cited above in
+	two important ways. First, the parameter range that we have chosen for the
+	current study relies on those extracted by \textit{ab initio} calculstions
+	on Nickel dimers.\cite{bastardis_microscopic_2007,bastardis_isotropic_2008}
+	Second, we use exact diagonalisation to be able to obtain a large number of
+	low lying states for challenging parameter values which is a difficult task
+	to acomplish even via DMRG techniques. Therefore, the present study serves
+	to augment the available literature for parameter range extracted using
+	\textit{ab initio} calculations.
 	
 	\chapter{Methodology}
 	\section{Double Exchange Hamiltonian}
@@ -208,7 +223,16 @@
 		\label{eq:demodel1}
 	\end{equation}
 	
-	In the present work it has been incorporated the hole repulsion as proposed by C. J. Calzado and J. P. Malrieu \cite{calzado_proposal_2001}, this repulsion is considered beteenw two consecutive holes (Eq. \ref{eq:demodel2}).
+	The main phenomenology that is incorporated in the hamiltonian is the
+	competition between the parallel alignment of the electrons favored by the
+	kinetic-energy term $t$ and the anti-parallel alignment favored by the
+	potential term $J$. This competition gives rise to a rich phase diagram
+	which might give rise to the phenomenology of CMR.
+
+	In the present work we have also incorporated the hole repulsion as proposed
+	by C. J. Calzado and J.  P. Malrieu \cite{calzado_proposal_2001}, this
+	repulsion is considered beteenw two consecutive holes (Eq.
+	\ref{eq:demodel2}).
 	\begin{equation}
 		\begin{split}
 			\hat{H} & = \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} 
@@ -218,7 +242,8 @@
 		\end{split}
 		\label{eq:demodel2}
 	\end{equation}
-	A second approximation to hole repulsion has been used considering repulsion between all the holes as a function of the distance (Eq. \ref{eq:demodel3}).
+	A second approximation to hole repulsion has been used considering repulsion
+	between all the holes as a function of the distance (Eq. \ref{eq:demodel3}).
 	\begin{equation}
 		\begin{split}
 			\hat{H} & = \sum_i 2K \hat{S}_{a_i}\cdot\hat{S}_{b_i} 
@@ -234,7 +259,7 @@
 	\begin{figure}[ht]
 		\centering
 			\includegraphics[scale=0.25]{DE.png}
-		\caption{\label{fig:deham} Representation of a model system with parameters used in double exchange hamiltonian. }
+		\caption{\label{fig:deham} Representation of a model system showing the interatction terms used in double exchange hamiltonian. }
 	\end{figure}
 	These Hamiltonians describe a model with two valence orbitals on each
 	atom (site) ideally of differnet symmetry (i.e. orthogonal, e.g. $a,b$). A schematic is shown in
@@ -276,37 +301,43 @@
 	
 	\begin{itemize}
 		
-		\item $K$ - The local exchange integral. This exchange integral represents
-		Hund's rule and is always positive. The local exchange favors parallel
-		coupling i.e. a local high spin determinant.
+		\item $K$ - The local exchange integral. This exchange integral
+		  represents Hund's rule and is always positive. The local exchange
+		  favors parallel coupling i.e. a local high spin determinant.
 		
-		\item $J$ - The kinetic exchange interaction between orbitals of symmetry $a$
-		on neighboring sites. This integral is responsible of the anti-parallel coupling.
+		\item $J$ - The kinetic exchange interaction between orbitals of
+		  symmetry $a$ on neighboring sites. This interaction is responsible of
+		  the anti-parallel coupling.
 		
-		\item $t$ - The kinetic energy integral or the hopping term. The
-		transfer of electrons from one atom to the neighboring atom is represented
-		by the hopping term. This also favors parallel coupling when taken along with
-		the exchange integral $K$.
+		\item $t$ - The kinetic energy term or the hopping term. The transfer of
+		  electrons from one atom to the neighboring atom is represented by the
+		  hopping term. This also favors parallel coupling when taken along with
+		  the exchange integral $K$.
 		
-		\item $V$ - The hole repulsion term. This takes into account the repulsion between
-		holes which are on neighboring sites $V_{NN}=\alpha \slash 2$ or all the sites as a function of distance $V_{ij}=\alpha \slash 2r_{ij}$. The hole repulsion indirectly takes into account the repulsion between
-		electrons.\cite{calzado_proposal_2001}
+		\item $V$ - The hole repulsion term. This takes into account the
+		  repulsion between holes which are on neighboring sites $V_{NN}=\alpha
+		  \slash 2$ or all the sites as a function of distance $V_{ij}=\alpha
+		  \slash 2r_{ij}$. The hole repulsion indirectly takes into account the
+		  repulsion between electrons.\cite{calzado_proposal_2001}
 		
 	\end{itemize}
+
+	Note that in the present model, we assume a distance of 1 a.u. between adjascent
+	sites which implies that $r_{ij} = |i-j|$ a.u.
 	
-	It is important to remark that there is a competition between $J$ which favors the antiferromagnetic couplings and $t$ which favors the ferromagnetic couplings, this competition plays a fundamental rol in the physics of the system.
+	It is important to emphasize again that there is a competition between $J$ which favors the antiferromagnetic couplings and $t$ which favors the ferromagnetic couplings, this competition plays a fundamental rol in the physics of the system.
 	
 	\section{Parameter Space}
 	
-	All the parameters of the model are important for understanding the collective
-	properties of the double exchange hamiltonian. Here we give the order of magnitude
-	of all the parameters used keeping in mind that we target molecules based on
+	All the parameters of the model are important for understanding the
+	collective properties of the double exchange hamiltonian. Here we give the
+	order of magnitude of all the parameters used keeping in mind that we target
+	molecules based on transition metal atoms.  Previous studies using
+	\textit{ab initio} methods in order to extract model parameters for various
+	transition metal atoms such as Cu, Mn, and Ni have provided realistic order
+	of magnitudes of the values of the parameters.  In the present analysis, we
+	use the full range of values in order to represent the full range of
 	transition metal atoms.
-	Previous studies using \textit{ab initio} methods in order to extract model
-	parameters for various transition metal atoms such as Cu, Mn, and Ni have
-	provided realistic order of magnitudes of the values of the parameters.
-	In the present analysis, we use the full range of values in order to represent
-	the full range of transition metal atoms.
 	
 	\begin{table}[h!]
 		\centering
@@ -333,47 +364,66 @@
 	
 	%\chapter{Methodology}
 	
-	The double exchange hamiltonian is studied for one dimensional chain
-	of sites containing holes with a doping ratio of 1:3 i.e. one hole for every
-	three sites, from now the notation $n_{lh}$ will be used to refer a chain with $n$ sites and $l$ holes. This follows the previous study by V. G. Chilkuri which shows that for
-	the physically meaningful range of parameter values,
-	a single hole aligns about three sites.\cite{crystals_chilkuri}
+	The double exchange hamiltonian is studied for one dimensional chain of
+	sites containing holes with a doping ratio of 1:3 i.e. one hole for every
+	three sites, from now the notation $n_{l\text{h}}$ will be used to refer a chain
+	with $n$ sites and $l$ holes. This follows the previous study by V. G.
+	Chilkuri which shows that for the physically meaningful range of parameter
+	values, a single hole aligns about three sites.\cite{crystals_chilkuri}
 	
 	\section{Exact diagonalization}
 	
-	An exact diagonalization method is used to obtain many low energy states of the
-	hamiltonian. Due to the exponential growth of the hilbert space with the number
-	of sites, exact diagonalization becomes challenging.Here we use our home made
-	code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to perform exact diagonalization and
-	use a large number of high performance compute nodes for distributed storage of
-	the hamiltonian matrix and eigenvectors. We have used DEHam\cite{deham} to
-	perform exact diagonalization of very large number of sites up to 18 sites
-	containing 36 orbitals with 6 holes which corresponds to a hilbert space of
-	about $0.5 \times 10^9$ determinants.
+	An exact diagonalization method is used to obtain many low energy states of
+	the hamiltonian. Due to the exponential growth of the hilbert space with the
+	number of sites, exact diagonalization becomes challenging. Here we use our
+	home made code relying on PETSc\citepetsc and SLEPc\citeslepc libraries to
+	perform exact diagonalization and use a large number of high performance
+	compute nodes for distributed storage of the hamiltonian matrix and
+	eigenvectors. We have used DEHam\cite{deham} to perform exact
+	diagonalization of very large number of sites up to 18 sites containing 36
+	orbitals with 6 holes which corresponds to a hilbert space of about $0.5
+	\times 10^9$ determinants.
 	
 	\section{Model space}
 	\begin{figure}[ht]
 		\centering
 			\includegraphics[scale=0.25]{boites.png}
-		\caption{\label{boites}. Representation of the boxes formed by aligned spins for 6$_{2h}$.}
+		\caption{\label{boites}. Representation of the local ferromagnetic polarons formed by spins aligned by a single hole for 6$_{2h}$.}
 	\end{figure}
-	As discussed above, a hole aligns about three sites. That allows to model the sistem considering "boxes" of 3 sites with a hole as a new "orbital" occupied by a particle with  $s=5 \slash 2$. These boxes have a ferromagnetic coupling inside and are coupled to each other in an antiferromagnetic way, as it is represented in figure \ref{boites}. Then, the model space is conformed by all the possible determinats of the boxes. Some questions arise from this model:
+	As discussed above, a hole aligns about three sites. That allows one to
+	model the system considering "boxes" of 3 sites with a hole as a new "site"
+	occupied by a particle with  $S=5 \slash 2$. These boxes have a
+	ferromagnetic coupling inside and are coupled to each other in an
+	anti-parallel or parallel way, as it is represented in figure \ref{boites}.
+	Then, the model space is formed by all the possible determinats of the a
+	chaing of $S=5 \slash 2$ spins. Some questions arise from this model:
 	\begin{itemize}
-	    \item Is it the model space good enough?
-	    \item For which values of $J$?
-	    \item What is the influence of repulsion?
-	    \item What model hamiltonian use in order to reproduce the low energy spectrum?
+	    \item Is the model space good enough (i.e. properly chosen) ?
+	    \item For which range of values of $J$ do we obtain such a model space ?
+	    \item What is the influence of hole repulsion ?
+	    \item What is the model hamiltonian that reproduces the low energy spectrum ?
 	\end{itemize}
-	These questions will be discussed along this repport
+	These are the questions that will be discussed in this report.
 	
 	
 	\section{Model Hamiltonian}
-	In this work is used a Heisemberg hamiltonian as a model:
+	In this work we use a simple Heisemberg hamiltonian as a proposed model hamiltonian:
 	\begin{equation}
 	\hat{H}_{model}=-2J_{eff}\sum_i (\hat{S}_i\hat{S}_{i+1}-\frac{25}{4}\mathbb{1})
 	\end{equation}
-	Using the Efective hamiltonian theory \cite{heff} to obtain a numerical hamiltonian which reproduce the double exchange wavefunction in the model espace. $J_{eff}$ can be calculated by fitting the analitical model hamiltonian to the effective hamiltonian.
+	Using Efective hamiltonian theory \cite{heff} to obtain a numerical hamiltonian which reproduce the double exchange wavefunction in the model espace, $J_{eff}$ can be calculated by fitting the analitical model hamiltonian to the effective hamiltonian.
+
 	\section{Projector}
+
+	Since here, we analyse the part of the wavefunction in the model space, a
+	projector on the model space needs to be defined. Such a projector will
+	project on determinants which contain only one hole inside a box containing
+	three sites defined earlier. The projector must also project to a $S=5
+	\slash 2$ spin inside the box. Therefore, the projector contains two parts,
+	one spatial ($\hat{\mathcal{P}}_{space}$) projecting the hole positions and
+	a second spin ($\hat{\mathcal{P}}_{spin}$) which takes care of the total
+	spin inside the box. The total projector will be the product of these
+	two projectors.
 
 	\subsection{Spatial part}
 
@@ -381,13 +431,14 @@
 	Hueckel hamiltonian for three sites which is given below:
 
 	\begin{equation}
-		\begin{split}
-			 \begin{pmatrix}
-			   0 & t & 0 \\
-			   t & 0 & t \\
-			   0 & t & 0 \\
-			 \end{pmatrix}
-		\end{split}
+      \begin{blockarray}{cccc}
+      & $\|bc\rangle$ & $\|ac\rangle$ & $\|ab\rangle$ \\
+      \begin{block}{c(ccc)}
+        $\|bc\rangle$ & 0 & t & 0 \\
+        $\|ac\rangle$ & t & 0 & t \\
+        $\|ab\rangle$ & 0 & t & 0 \\
+      \end{block}
+      \end{blockarray}
 		\label{eq:demodel}
 	\end{equation}
 
@@ -423,32 +474,34 @@
 
 
 	\begin{equation}
-		\begin{split}
-			\hat{\mathcal{P}}_{spin}(S_T,M_{S_T}) & = \sum_{M_{S_R}}\sum_{M_{S_L}} \begin{pmatrix} \frac{5}{2} & \frac{5}{2} & S_T\\ M_{S_R} & M_{S_L} & M_{S_T} \end{pmatrix}\left |\frac{5}{2},M_{S_R}\right\rangle\otimes\left|\frac{5}{2},M_{S_L}\right\rangle
-		\end{split}
+			\hat{\mathcal{P}}_{spin}(M_{S_T}) & = \sum_{\substack{M_{S_1},M_{S_2}, \\ M_{S_1}+M_{S_2}=M_{S_T}}}
+			\binom{5}{5 - 2 M_{S_1}}^{-1/2}\binom{5}{5 - 2 M_{S_2}}^{-1/2}
+			\left |\frac{5}{2},M_{S_R}\right\rangle\otimes\left|\frac{5}{2},M_{S_L}\right\rangle
 		\label{eq:demodel}
 	\end{equation}
 
-	where $S_T$ and $M_{S_T}$ represent the total spin and the total $Ms$
-	respectively. The values $M_{S_L}$ and $M_{S_R}$ represent the $Ms$ of the
-	$\frac{5}{2}$ spins on the left and right respectively. The values in
-	brackets represent Clebsch Gordan coefficients (CGC) for the three spins
-	entering the couping formula.  The wavefunction is a tensor product of all
-	the possible $Ms$ combinations generated by two $\frac{5}{2}$ spins.
+	where $S_T$ and $M_{S_T}$ represent the total spin and the total z component
+	of the spin moment ($Ms$) respectively. The values $M_{S_1}$ and $M_{S_2}$
+	represent the $Ms$ of the first and second $\frac{5}{2}$ spins respectively.
+	The values in brackets represent binomial coefficients for each of the
+	individual spins entering the product.
 
 	Similarly, the projector for an arbitrary number of sites si similarly defined
 	as follows:
 
 	\begin{equation}
 		\begin{split}
-			\hat{\mathcal{P}}_{spin}(S_T,M_{S_T}) & = \sum_{M_{S_i}}\dots\sum_{M_{S_m}} \prod_{i}^{m} \begin{pmatrix} \frac{5}{2} & \frac{5}{2} & S_T\\ M_{S_i} & M_{S_{i+1}} & M_{S_T} \end{pmatrix}
+			\hat{\mathcal{P}}_{spin}(M_{S_T}) & = \sum_{\substack{M_{S_1}\dots M_{S_m},\\ M_{S_1} + \dots + M_{S_m} = M_{S_T}}} \prod_{i}^{m}
+			\binom{5}{5 - 2 M_{S_i}}^{-1/2}
 			\bigotimes_{i = 1}^{m}\left|\frac{5}{2},M_{S_i}\right\rangle
 		\end{split}
 		\label{eq:demodel}
 	\end{equation}
 
-	In this way, the spin part of the projector on the model space can be uniquely
-	defined for an arbitrary number of sites.
+    The wavefunction is a tensor product of all the possible $Ms$ combinations
+	generated by $m$ ($\frac{5}{2}$) spins respecting the identity
+	$\sum_i^m M_{S_i} = M_{S_T}$.  In this way, the spin part of the projector on the
+	model space can be uniquely defined for an arbitrary number of sites.
 
 	The total projector can then be written as the product of the spin
 	and spatial parts given above.
@@ -459,7 +512,10 @@
 		\end{split}
 		\label{eq:demodel}
 	\end{equation}
-	
+
+	Note that the projector is normalized i.e.
+	$\hat{\mathcal{P}}\cdot\hat{\mathcal{P}} = \hat{\mathcal{P}}$.
+
 	\section{Effective Hamiltonian}
 	
 	%\section{Real Space Renormalization Group}
@@ -484,12 +540,26 @@
 		\end{minipage}
 		\caption{\label{fig_w69} Weight (W) as a function of $J$ for 6$_{2h}$ (left) and 9$_{3h}$ (right). }
 	\end{figure}
-	Figure \ref{fig_w69} shows the weight of the wave function projected in the model space as afunction of J for 6$_{2h}$ (left) and 9$_{3h}$ (right), for each value of spin is represented the one with a bigger weight. This confirms that it is possible to have an interval of values of J in which the weight reach excellent values (even $>$ 90$\%$ in some cases). It is possible to see that weights for 9$_{3h}$ are smaller than those of 6$_{2h}$ this due to the fact that when increasing the size of the system it also increase the number of determinants out of the model space.
+	Figure \ref{fig_w69} shows the weight of the wave function projected in the
+	model space as afunction of J for 6$_{2h}$ (left) and 9$_{3h}$ (right), for
+	each spin sector, the state with the largest weight is chosen. This confirms
+	that it is possible to have an interval of values of J in which the weight
+	reaches satisfactory values (even $>$ 90$\%$ in some cases). It is easy to
+	observe that the weights for 9$_{3h}$ are smaller than those of 6$_{2h}$.
+	This due to the fact that with increasing size of the system and
+	normalization of the wavefunction, the absolute weight of the model space
+	decreases. In other words, the ratio of the size of the model space vs the
+	total size of the Hilbert space goes to zero with increasing number of sites.
 	 
-	 In a first moment weight increases with $J$ this is because for a small value of $J$ the system is completely governed by $t$ and that will favor the ionic determinants, but after the weight falls drastically as J favors the antiferromagnetic couplings inside the boxes.
+	 Initially, the weight increases with increasing magnitude of $J$ this is
+	 because for a small value of $J$ the system is completely governed by $t$
+	 which will favor the ionic determinants. Howeveer, after a maximum, the
+	 weight falls drastically as larger values of $J$ favors the
+	 antiferromagnetic couplings inside the boxes and hense the component due to spin $S=5 \slash 2$ decreases.
 	
 	
 	\subsection{Variation with Repulsion}
+
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
@@ -500,15 +570,37 @@
 		\begin{minipage}{0.4\textwidth}
 			\includegraphics[scale=0.35]{W_vs_J_sites_2-xrep-225.png}
 		\end{minipage}
-		\caption{\label{fig_0_225} Weight (W) as a function of $J$ for xrep=0 $|t|$ (left) and xrep=2.25 $|t|$ (right). }
+		\caption{\label{fig_0_225} Weight (W) as a function of $J$ for $\alpha = 0 |t|$ (left) and $\alpha \slash 2 = 2.25|t|$ (right). }
 	\end{figure}
 	
-	In figure \ref{fig_0_225} are shown the weight as a function of $J$ without hole repulsion (left) and a hole repulsion with $\alpha=2.25|t|$ (right). Here it is possible to see the same tendence but repulsion increases the weight in the model space as it forces the holes away from each other and this decreases the weight of the ionic determinants. 
+	Figure \ref{fig_0_225}, shows the weight as a function of $J$ without hole
+	repulsion (left) and with hole repulsion with $\alpha=2.25|t|$ (right). Here it
+	is possible to see the same tendency but repulsion increases the weight in
+	the model space as it forces the holes away from each other and this
+	decreases the weight of the ionic determinants. This was one of the
+	motivations to include the hole repulsion in the double exchange hamiltonian.
+
 	\subsection{Conclusions}
-	From the analysis above it is possible to conclude that the wavefunction has an excellent weight in model space for $0 \leq J < 0.2|t|$
+
+	From the analysis above it is possible to conclude that the wavefunction has
+	an excellent weight on the model space for $0.05 \leq J < 0.1|t|$
+
 	\section{Influence of hole repulsion}
+
 	\subsection{Variation of maximal weight}
-	In order to better understand the effect of hole repulsion it is convenient to analize the maximal value of weight for each state for several values of $\alpha$ as displayed in figure \ref{fig_v1n} for two models: at left only considering repulsion between first neighbors and at right repulsion between all the holes as a function of distance. At the begining there is an increase of the weight as explained above but for bigger values of repulsion there is a slight decrease as it will force the holes to be at the borders, and the spatial projector is the solution of Hückel in wich the hole at the exterior border of each box has a weight of 25$\%$, so even if itgains in weight the decreasing of the others will cause a global but slight decrease.So with $\alpha=2.25|t|$ we have the maximal values of weight. 
+
+	In order to better understand the effect of hole repulsion it is convenient
+	to analize the maximal value of weight for each state for several values of
+	$\alpha$ as displayed in figure \ref{fig_v1n} for two models: at left only
+	considering repulsion between first neighbors and at right repulsion between
+	all the holes as a function of the distance. At the begining there is an
+	increase of the weight as explained above but for bigger values of repulsion
+	there is a slight decrease as it will force the holes to be at the borders,
+	and the spatial projector is the solution of Hückel in wich the hole at the
+	exterior border of each box has a weight of 25$\%$, so even if it gains in
+	weight the decreasing of the others components will cause a global but
+	slight decrease. Therefore, we observe a maximum value of the weight for the
+	values of $\alpha=2.25|t|$.
 	
 	\begin{figure}[h!]
 		\centering
@@ -520,7 +612,7 @@
 		\begin{minipage}{0.4\textwidth}
 			\includegraphics[scale=0.35]{Wmax_vs_xrep0vn.png}
 		\end{minipage}
-		\caption{\label{fig_v1n} Maximal weight (W$_{max}$)as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
+		\caption{\label{fig_v1n} Maximal weight (W$_{max}$) for each state as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
 	
 	\subsection{Impact on $J_m$}
@@ -536,14 +628,41 @@
 		\end{minipage}
 		\caption{\label{fig_jv1n} Value of $J$ for which the maximal weight is reached ($J_m$) as a function of repulsion calculated with two models: only considering repulsion between consecutive holes (left) and considering repulsion between all the holes as function of distance (right). }
 	\end{figure}
-	Repulsion decreases the kinetic energy of the system as it constrains the movement of holes, this will have a direct impact in the effect of $t$. As we pointed before there is a competition between $J$ (which favors antiferromagnetic coupling) and $t$ (which favors ferromagnetic coupling), so this negative impact of repulsion on the effect of $t$ will cause that for even smaller values of $J$ the antiferromagnetic coupling becomes stronger and makes the weight falls abruptely as discussed in section 3.1.1. Therefore the maximal value of weight is reached for smaller values of $J$ as shown in figure \ref{fig_jv1n} in which it is possible to see the value of $J$ for which the maximal weight is reached for several values of $\alpha$ and also for the two models explained above. Non significants differences are found for both models. 
+
+	In order to rationalize this decrease in $J_m$ with $\alpha$, we propose the
+	following explanation.  Repulsion decreases the kinetic energy of the system
+	as it constrains the movement of holes, this will have a direct impact in
+	the magnitude of the effect of $t$. As we pointed before there is a
+	competition between $J$ (which favors antiferromagnetic coupling) and $t$
+	(which favors ferromagnetic coupling), so this negative impact of repulsion
+	on the effect of $t$ will cause that for even smaller values of $J$ the
+	antiferromagnetic coupling becomes stronger and makes the weight falls
+	abruptly as discussed in section 3.1.1.  Therefore the maximal value of
+	weight is reached for smaller values of $J$ and $J_m$ is smaller as shown in
+	figure \ref{fig_jv1n} in which it is possible to see the value of $J$ for
+	which the maximal weight is reached for several values of $\alpha$ and also
+	for the two models explained above. Note that no significants differences
+	are found between the two types of repulsion.
+
 	%\subsection{RSRG}
+
 	\subsection{Conclusions}
-	For reasonable values of repulsion the projections are better, the weight has a maximal value for $\alpha$ around 2.25$|t|$ with $J=0.064|t|$.
+
+	For reasonable values of repulsion the projections are good and the weight
+	has a maximal value for $\alpha$ around 2.25$|t|$ with $J=0.064|t|$.
 	
 	\section{Results of $J_{eff}$}
+
 	\subsection{Influence of the number of sites}
-	Figure \ref{fig_arj} shows the values of $J_{eff}$ obtained by fitting the effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$ and for two different values of $\alpha$ in an interval in which the wavefunction has a good projection. There is an interval in which $J_{eff}$ becomes antiferromagnetic (below the red line). As it is observed the values for both systems are pretty close, so in this range of values $J_{eff}$ is transferable.
+
+	Figure \ref{fig_arj} shows the values of $J_{eff}$ obtained by fitting the
+	effective hamiltonian to te model hamiltonian, for 6$_{2h}$ and 9$_{3h}$ and
+	for two different values of $\alpha$ in an interval in which the
+	wavefunction has a good projection. There is an interval in which $J_{eff}$
+	becomes antiferromagnetic (below the red line). As it is observed the values
+	for both systems are pretty close, so in this range of values $J_{eff}$
+	seems to be transferable.
+
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
@@ -558,10 +677,20 @@
 	\end{figure}
 
 	
-	
-	
 	\subsection{Influence of hole repulsion}
-	In order to understand the influence of repulsion on $J_eff$ it has been calculated for several values of $\alpha$ as represented in figure \ref{fig_arj1}. When increse the repulsion $J_{eff}$ goes faster to antiferromagnetic values. This results is ilustrated in figure \ref{fig_arxrep} in which $J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$.
+
+	In order to understand the influence of repulsion on $J_{eff}$, we have
+	performed the fit to obtain $J_{eff}$ for several values of $\alpha$ as
+	represented in figure \ref{fig_arj1}. Intersetingly, the $J_{eff}$ seems to
+	vary linearly with $J$ with a different slope for the ferromagnetic part and
+	the anti-ferromagnetic part. This suggests a possible existance of a phase
+	transition.
+
+	Upon increasing the repulsion, $J_{eff}$ goes faster to antiferromagnetic
+	values. This results is ilustrated in figure \ref{fig_arxrep} in which
+	$J_{eff}$ is represented as a function of repulsion for $J=0.062|t|$. This
+	is a very interesting result which we have not yet been able to explain.
+
 	\begin{figure}[h!]
 		\centering
 		\hspace{-2cm}
